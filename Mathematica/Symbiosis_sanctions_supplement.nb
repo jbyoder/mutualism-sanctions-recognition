@@ -1,0 +1,1744 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[     71119,       1735]
+NotebookOptionsPosition[     68180,       1630]
+NotebookOutlinePosition[     68622,       1649]
+CellTagsIndexPosition[     68579,       1646]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[TextData[{
+ StyleBox["Symbiosis mediated by sanctions \n", "Title"],
+ StyleBox["Supplement to Yoder and Tiffin, \[OpenCurlyDoubleQuote]Sanctions, \
+recognition, and variation in mutualistic symbiosis\[CloseCurlyDoubleQuote]", 
+  "Subtitle"]
+}], "Text",
+ CellChangeTimes->{{3.616428195064245*^9, 3.6164282202517633`*^9}, {
+  3.6164287585735903`*^9, 3.6164287624659796`*^9}, {3.6201321550750437`*^9, 
+  3.6201321585453906`*^9}, {3.6215979553683095`*^9, 3.6215979569674697`*^9}, {
+  3.623690684471958*^9, 3.6236906845187593`*^9}, {3.659714618703854*^9, 
+  3.6597146233495703`*^9}, {3.660414363675774*^9, 3.66041436477535*^9}, {
+  3.6604978292208443`*^9, 3.660497829931848*^9}, {3.670005083954377*^9, 
+  3.670005131169156*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Terms", "Section",
+ CellChangeTimes->{{3.6200529551235733`*^9, 3.620052955549616*^9}}],
+
+Cell[TextData[{
+ "This creates a stand-alone model of symbiosis mediated only by host \
+sanctions against non-cooperating symbionts.\n\nAssume infinite populations \
+of interacting, haploid, hosts and symbionts. A host\[CloseCurlyQuote]s \
+ability to sanction a non-cooperative symbiont is determined by its genotype \
+at a single locus; hosts carrying the allele H at this locus are able to \
+sanction, while those carrying the h allele are not. A haploid symbiont is \
+cooperative if it carries the M allele, but not if it carries the m allele. \
+Hosts and symbionts encounter each other at random and initiate symbiosis \
+without respect to their genotypes.\n\nIn successful interaction, the host \
+pays a cost ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["C", "H"], TraditionalForm]]],
+ " of symbiosis and receives a benefit ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["B", "H"], TraditionalForm]]],
+ " from a cooperative symbiont; the symbionts pay a cost ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["C", "S"], TraditionalForm]]],
+ " and receive benefit ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["C", "S"], TraditionalForm]]],
+ ". Hosts interacting with non-mutualist symbionts (m genotype) pay the cost \
+without gaining the benefit. unless they are able to sanction (H genotype). \
+The effectiveness of sanctions, \[Omega], determines how much of the cost of \
+symbiosis a host can avoid when interacting with a non-cooperative symbiont; \
+greater values of \[Omega] mean that sanctions do more to reduce the cost of \
+hosting non-cooperators."
+}], "Text",
+ CellChangeTimes->{{3.6200529626493263`*^9, 3.620053341537211*^9}, {
+   3.620053429296986*^9, 3.620053436069663*^9}, {3.6201321741059465`*^9, 
+   3.620132209363472*^9}, 3.6201323509396276`*^9, {3.621620252153765*^9, 
+   3.6216202590944595`*^9}, {3.6255142812157383`*^9, 
+   3.6255142897805943`*^9}, {3.626708617073745*^9, 3.626708641197013*^9}, {
+   3.660497838280179*^9, 3.660497844603731*^9}, {3.670005141369958*^9, 
+   3.6700053712652473`*^9}, {3.670005494316518*^9, 3.670005528453457*^9}, {
+   3.670010426320458*^9, 3.670010429438077*^9}, {3.670013787216118*^9, 
+   3.67001380491304*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Symbiosis outcomes and fitness", "Section",
+ CellChangeTimes->{{3.619523796114549*^9, 3.61952379982592*^9}, {
+  3.670006336751013*^9, 3.670006340766489*^9}}],
+
+Cell["\<\
+First, a host payoff matrix describes the outcomes of encounters between host \
+genotypes H or h (rows) and symbiont genotypes M and m (columns).\
+\>", "Text",
+ CellChangeTimes->{{3.620052676690733*^9, 3.620052691384202*^9}, {
+   3.6200527261126747`*^9, 3.620052785919655*^9}, {3.6213585486309767`*^9, 
+   3.6213585645385675`*^9}, {3.670005393762642*^9, 3.670005481675988*^9}, 
+   3.67001059733974*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pmH", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["B", "H"], "-", 
+        SubscriptBox["C", "H"]}], ",", " ", 
+       RowBox[{
+        RowBox[{"-", 
+         RowBox[{"(", 
+          RowBox[{"1", "-", "\[Omega]"}], ")"}]}], " ", 
+        SubscriptBox["C", "H"]}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", " ", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["B", "H"], "-", " ", 
+        SubscriptBox["C", "H"]}], ",", " ", 
+       RowBox[{"-", 
+        SubscriptBox["C", "H"]}]}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "pmH", "]"}]}], "Input",
+ CellChangeTimes->{{3.6200527007171354`*^9, 3.6200527161906824`*^9}, {
+   3.6200529399820595`*^9, 3.6200529420962706`*^9}, {3.620053357769834*^9, 
+   3.620053400622119*^9}, {3.620053460710127*^9, 3.6200535324342985`*^9}, {
+   3.620053866185671*^9, 3.620053900667118*^9}, {3.620132392180752*^9, 
+   3.6201324375122843`*^9}, {3.621619832129767*^9, 3.621619853681922*^9}, 
+   3.6216200009726496`*^9, {3.6236089051059465`*^9, 3.6236089378792777`*^9}, {
+   3.6249768892849708`*^9, 3.624976890297072*^9}, {3.6255143036099772`*^9, 
+   3.625514342879904*^9}, {3.6267086533876505`*^9, 3.6267086553376875`*^9}, {
+   3.6597159611949863`*^9, 3.6597159738389072`*^9}, 3.670005824557826*^9}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{
+       SubscriptBox["B", "H"], "-", 
+       SubscriptBox["C", "H"]}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Omega]"}], ")"}], " ", 
+       SubscriptBox["C", "H"]}]},
+     {
+      RowBox[{
+       SubscriptBox["B", "H"], "-", 
+       SubscriptBox["C", "H"]}], 
+      RowBox[{"-", 
+       SubscriptBox["C", "H"]}]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{
+  3.6249769079718394`*^9, 3.625405267117337*^9, {3.625510976796329*^9, 
+   3.6255109910137506`*^9}, 3.6255143440050163`*^9, 3.6255806591155214`*^9, 
+   3.62654640384334*^9, 3.6267086595809693`*^9, 3.626716328086484*^9, 
+   3.627047243543385*^9, 3.6271497641129827`*^9, 3.659714280548129*^9, 
+   3.6597159754012747`*^9, 3.660414382513562*^9, 3.6604978560731583`*^9, 
+   3.670005390788351*^9, 3.6700058268037567`*^9}]
+}, Open  ]],
+
+Cell["\<\
+Then, a symbiont payoff matrix (same orientation, for convenience).\
+\>", "Text",
+ CellChangeTimes->{{3.6200539292339745`*^9, 3.6200539510601573`*^9}, 
+   3.670005442562874*^9}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"pmS", " ", "=", " ", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["B", "S"], "-", " ", 
+        SubscriptBox["C", "S"]}], ",", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", "-", "\[Omega]"}], ")"}], "  ", 
+        SubscriptBox["B", "S"]}]}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", " ", 
+      RowBox[{
+       RowBox[{
+        SubscriptBox["B", "S"], "-", " ", 
+        SubscriptBox["C", "S"]}], ",", " ", 
+       SubscriptBox["B", "S"]}], "}"}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"MatrixForm", "[", "pmS", "]"}]}], "Input",
+ CellChangeTimes->{{3.6200526649455585`*^9, 3.620052666318696*^9}, {
+   3.6200539800530562`*^9, 3.620054116333683*^9}, {3.6201324670612392`*^9, 
+   3.6201324978373165`*^9}, {3.621619896759229*^9, 3.6216199170542583`*^9}, {
+   3.623608963410178*^9, 3.623608973926182*^9}, {3.624976900366079*^9, 
+   3.6249769012991724`*^9}, {3.6255143472603416`*^9, 3.625514364799095*^9}, 
+   3.6267087844918256`*^9, {3.65971599706269*^9, 3.6597160125021687`*^9}, 
+   3.67000582973952*^9}],
+
+Cell[BoxData[
+ TagBox[
+  RowBox[{"(", "\[NoBreak]", GridBox[{
+     {
+      RowBox[{
+       SubscriptBox["B", "S"], "-", 
+       SubscriptBox["C", "S"]}], 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"1", "-", "\[Omega]"}], ")"}], " ", 
+       SubscriptBox["B", "S"]}]},
+     {
+      RowBox[{
+       SubscriptBox["B", "S"], "-", 
+       SubscriptBox["C", "S"]}], 
+      SubscriptBox["B", "S"]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Center}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.7]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}], "\[NoBreak]", ")"}],
+  Function[BoxForm`e$, 
+   MatrixForm[BoxForm`e$]]]], "Output",
+ CellChangeTimes->{3.6249769108133802`*^9, 3.6254052698326087`*^9, 
+  3.625510994196069*^9, 3.6255143681484303`*^9, 3.6255806611903353`*^9, 
+  3.626546407509411*^9, 3.626708785412243*^9, 3.6267163305211306`*^9, 
+  3.6270472456715975`*^9, 3.627149768003458*^9, 3.659714284203903*^9, 
+  3.6597160135882893`*^9, 3.6604143856612186`*^9, 3.660497856214994*^9, 
+  3.6700057755957108`*^9, 3.67000583041506*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Fitness expressions", "Subsection",
+ CellChangeTimes->{{3.6195238080057383`*^9, 3.619523810490987*^9}, {
+  3.6700055836714582`*^9, 3.670005588063204*^9}}],
+
+Cell["\<\
+From the payout matrices, we can derive fitness statements for each host and \
+symbiont genotype. For each species, fitness is determined as 1+P, where P is \
+the payout from the symbiosis, determined by the frequencies of the other \
+species\[CloseCurlyQuote] genotypes.\
+\>", "Text",
+ CellChangeTimes->{{3.670005545647037*^9, 3.670005580255067*^9}, {
+  3.670005611744001*^9, 3.6700056156079893`*^9}, {3.670005695628112*^9, 
+  3.6700057561804667`*^9}, {3.6700113404283037`*^9, 3.670011346337462*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Host fitness", "Subsubsection",
+ CellChangeTimes->{{3.670005600640869*^9, 3.670005602935562*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"wH", "=", 
+   RowBox[{"1", "+", 
+    RowBox[{
+     SubscriptBox["p", "M"], " ", 
+     RowBox[{"pmH", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       SubscriptBox["p", "M"]}], ")"}], " ", 
+     RowBox[{"pmH", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "2"}], "]"}], "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"wh", "=", 
+   RowBox[{"1", "+", 
+    RowBox[{
+     SubscriptBox["p", "M"], " ", 
+     RowBox[{"pmH", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "1"}], "]"}], "]"}]}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       SubscriptBox["p", "M"]}], ")"}], " ", 
+     RowBox[{"pmH", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "2"}], "]"}], "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"wbarH", "=", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox["p", "H"], " ", "wH"}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       SubscriptBox["p", "H"]}], ")"}], " ", "wh"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.61952381502544*^9, 3.6195238218891263`*^9}, {
+   3.6195238668366203`*^9, 3.619524017334669*^9}, {3.6195242540063334`*^9, 
+   3.619524360140946*^9}, {3.6195246083487644`*^9, 3.6195246424921784`*^9}, {
+   3.6200541552205715`*^9, 3.620054235086557*^9}, {3.620054363980445*^9, 
+   3.6200544533813844`*^9}, {3.6200548955816*^9, 3.620054902770319*^9}, {
+   3.620055077491789*^9, 3.620055258052843*^9}, {3.6201325135538883`*^9, 
+   3.6201326053800697`*^9}, {3.6201392550220003`*^9, 
+   3.6201392651130095`*^9}, {3.623690737918342*^9, 3.62369076916601*^9}, {
+   3.6241953816740103`*^9, 3.624195393452875*^9}, {3.626546471682853*^9, 
+   3.6265464726032705`*^9}, {3.626708791625163*^9, 3.626708823418976*^9}, 
+   3.626708858045055*^9, {3.626709136519251*^9, 3.626709137908079*^9}, {
+   3.65971446569235*^9, 3.659714476924809*^9}, 3.67000576785411*^9}],
+
+Cell[TextData[{
+ "Sanctioning hosts have greater fitness than non-sanctioners whenever ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["\[Omega]C", "H"], "(", 
+     RowBox[{"1", "-", 
+      SubscriptBox["p", "M"]}], ")"}], ">", "0"}], TraditionalForm]]],
+ ". This requires that ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["C", "H"], ">", "0"}], TraditionalForm]]],
+ " (there is a cost to hosting), that ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{"\[Omega]", ">", "0"}], TraditionalForm]]],
+ " (sanctions are able to reduce the cost of hosting), and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"1", "-", 
+     SubscriptBox["p", "M"]}], " ", ">", "0"}], TraditionalForm]]],
+ " (there are non-cooperative symbionts present in the population)."
+}], "Text",
+ CellChangeTimes->{{3.659716309550345*^9, 3.659716396280642*^9}, {
+  3.659716747941072*^9, 3.6597167759881973`*^9}, {3.670005892226034*^9, 
+  3.6700059926839857`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Simplify", "[", 
+  RowBox[{"wH", "-", "wh"}], "]"}]], "Input",
+ CellChangeTimes->{{3.659716076590157*^9, 3.6597160891993647`*^9}, {
+   3.659716279730918*^9, 3.659716280856415*^9}, 3.670005997497451*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"-", "\[Omega]"}], " ", 
+  SubscriptBox["C", "H"], " ", 
+  RowBox[{"(", 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", 
+    SubscriptBox["p", "M"]}], ")"}]}]], "Output",
+ CellChangeTimes->{{3.659716078247898*^9, 3.659716089873811*^9}, 
+   3.659716281648953*^9, 3.660497856310463*^9, 3.670005839715967*^9, 
+   3.670005998810717*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Symbiont fitnesses", "Subsubsection",
+ CellChangeTimes->{{3.6195247919611235`*^9, 3.6195247950094285`*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"wM", " ", "=", " ", 
+   RowBox[{"1", "+", 
+    RowBox[{
+     SubscriptBox["p", "H"], " ", 
+     RowBox[{"pmS", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "1"}], "]"}], "]"}]}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       SubscriptBox["p", "H"]}], ")"}], " ", 
+     RowBox[{"pmS", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "1"}], "]"}], "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"wm", " ", "=", " ", 
+   RowBox[{"1", "+", 
+    RowBox[{
+     SubscriptBox["p", "H"], " ", 
+     RowBox[{"pmS", "[", 
+      RowBox[{"[", 
+       RowBox[{"1", ",", "2"}], "]"}], "]"}]}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       SubscriptBox["p", "H"]}], ")"}], " ", 
+     RowBox[{"pmS", "[", 
+      RowBox[{"[", 
+       RowBox[{"2", ",", "2"}], "]"}], "]"}]}]}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"wbarM", " ", "=", 
+   RowBox[{
+    RowBox[{
+     SubscriptBox["p", "M"], " ", "wM"}], "+", 
+    RowBox[{
+     RowBox[{"(", 
+      RowBox[{"1", "-", 
+       SubscriptBox["p", "M"]}], ")"}], "wm"}]}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.619524798013729*^9, 3.6195248052724547`*^9}, {
+   3.619525001184044*^9, 3.6195250880687313`*^9}, {3.619525277051628*^9, 
+   3.6195253876516867`*^9}, {3.6195255162305436`*^9, 3.61952560310723*^9}, {
+   3.6195256488858075`*^9, 3.619525673543273*^9}, {3.6200566052935543`*^9, 
+   3.6200567263796616`*^9}, {3.620056760783101*^9, 3.620056809204943*^9}, {
+   3.6200568636323853`*^9, 3.620056864757498*^9}, {3.6200571785598745`*^9, 
+   3.620057209453964*^9}, {3.620057330698087*^9, 3.6200574707430906`*^9}, {
+   3.620057504122428*^9, 3.620057528264842*^9}, {3.620057587329748*^9, 
+   3.620057940402052*^9}, {3.620063919122864*^9, 3.6200639200199537`*^9}, {
+   3.6201346305535808`*^9, 3.6201346846879935`*^9}, {3.6201357636518793`*^9, 
+   3.620135813335847*^9}, {3.6236907848345647`*^9, 3.6236908082468815`*^9}, {
+   3.625511123752023*^9, 3.625511131838832*^9}, {3.626546478847391*^9, 
+   3.6265464797864094`*^9}, {3.6267088552350006`*^9, 3.626708886876811*^9}, {
+   3.659714387492784*^9, 3.659714391686037*^9}, 3.659718627831316*^9, 
+   3.670006014661585*^9}],
+
+Cell[TextData[{
+ "Non-cooperative symbionts have greater fitness than cooperators whenever ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     SubscriptBox["C", "S"], "/", 
+     RowBox[{"(", 
+      SubscriptBox["\[Omega]B", "S"], ")"}]}], ">", 
+    RowBox[{
+     SubscriptBox["\[Omega]p", "H"], 
+     SubscriptBox["B", "S"]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ". This requires that the cost of symbiosis ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["C", "S"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " be greater than the benefits of symbiosis ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["B", "S"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " weighted by the effectiveness of sanctions \[Omega] and the frequency of \
+sanctioning hosts ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", "H"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " \[LongDash] that is, the probability that a non-cooperator will encounter \
+a sanctioning host, and the degree to which sanctions can prevent \
+non-cooperators from enjoying the benefit of symbiosis."
+}], "Text",
+ CellChangeTimes->{{3.670006025684886*^9, 3.670006140302534*^9}, {
+  3.670006181721897*^9, 3.670006288541195*^9}, {3.6700101371690397`*^9, 
+  3.670010145184053*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{"wm", "-", "wM"}], "]"}]], "Input",
+ CellChangeTimes->{{3.620057955021513*^9, 3.6200579948975005`*^9}, {
+   3.620058063277338*^9, 3.6200580646484747`*^9}, {3.6201346462231474`*^9, 
+   3.6201346559311185`*^9}, {3.62013915420492*^9, 3.620139157568256*^9}, {
+   3.6236909189298162`*^9, 3.623690926844793*^9}, {3.624195412553512*^9, 
+   3.6241954144920945`*^9}, 3.626546477815771*^9, {3.626709207607028*^9, 
+   3.6267092491302423`*^9}, {3.670006019913164*^9, 3.670006036966096*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  SubscriptBox["C", "S"], "-", 
+  RowBox[{"\[Omega]", " ", 
+   SubscriptBox["B", "S"], " ", 
+   SubscriptBox["p", "H"]}]}]], "Output",
+ CellChangeTimes->{{3.626709220290881*^9, 3.626709249660653*^9}, 
+   3.6267163421779566`*^9, 3.6597142996147947`*^9, 3.6597144294818153`*^9, 
+   3.659716068556406*^9, 3.65971857227134*^9, 3.660425156331758*^9, 
+   3.6604978565397177`*^9, {3.670006020928761*^9, 3.670006038231646*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Allele frequency dynamics", "Section",
+ CellChangeTimes->{{3.6255112557292194`*^9, 3.6255112576084075`*^9}, {
+  3.6700063487029133`*^9, 3.670006350894842*^9}}],
+
+Cell["\<\
+From the above fitness expressions, we can derive per-generation change in \
+the frequency of host and symbiont alleles, following common expressions.\
+\>", "Text",
+ CellChangeTimes->{{3.625511274697116*^9, 3.625511286825329*^9}, {
+  3.670006312445773*^9, 3.670006387256117*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Host", "Subsection",
+ CellChangeTimes->{{3.625511452731918*^9, 3.625511453012946*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    SubscriptBox["p", "H"], "'"}], "=", 
+   RowBox[{
+    SubscriptBox["p", "H"], " ", 
+    RowBox[{"wH", "/", "wbarH"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  SubscriptBox["\[CapitalDelta]p", "H"], " ", "=", 
+  RowBox[{"FullSimplify", "[", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["p", "H"], "'"}], "-", 
+     SubscriptBox["p", "H"]}], "/.", 
+    RowBox[{"\[Epsilon]", "\[Rule]", "1"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.6255113396116066`*^9, 3.6255114232379684`*^9}, {
+  3.6267089083204265`*^9, 3.6267089173886023`*^9}, {3.6597168594357443`*^9, 
+  3.659716860970852*^9}, {3.660425188737667*^9, 3.6604251911845427`*^9}, {
+  3.67000645768293*^9, 3.670006465490292*^9}}],
+
+Cell[BoxData[
+ RowBox[{"-", 
+  FractionBox[
+   RowBox[{"\[Omega]", " ", 
+    SubscriptBox["C", "H"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      SubscriptBox["p", "H"]}], ")"}], " ", 
+    SubscriptBox["p", "H"], " ", 
+    RowBox[{"(", 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      SubscriptBox["p", "M"]}], ")"}]}], 
+   RowBox[{
+    RowBox[{"-", "1"}], "+", 
+    RowBox[{
+     SubscriptBox["C", "H"], " ", 
+     RowBox[{"(", 
+      RowBox[{"1", "+", 
+       RowBox[{"\[Omega]", " ", 
+        SubscriptBox["p", "H"], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"-", "1"}], "+", 
+          SubscriptBox["p", "M"]}], ")"}]}]}], ")"}]}], "-", 
+    RowBox[{
+     SubscriptBox["B", "H"], " ", 
+     SubscriptBox["p", "M"]}]}]]}]], "Output",
+ CellChangeTimes->{{3.625511395786224*^9, 3.625511424761121*^9}, 
+   3.625514446294244*^9, 3.625580691782131*^9, {3.6265464605050373`*^9, 
+   3.626546488731382*^9}, 3.6267089199832525`*^9, 3.6267163484144773`*^9, {
+   3.627047236000631*^9, 3.6270472545314837`*^9}, 3.62714981541798*^9, 
+   3.659714311144073*^9, 3.659714454090501*^9, 3.659714487456945*^9, 
+   3.659716140021772*^9, {3.6597168388131866`*^9, 3.659716861977075*^9}, 
+   3.660425158968071*^9, 3.6604251916999598`*^9, 3.660497862413953*^9, 
+   3.6700064019035063`*^9, 3.670006466423758*^9}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Symbionts", "Subsection",
+ CellChangeTimes->{{3.625511460843729*^9, 3.6255114626999145`*^9}, {
+  3.670006513757263*^9, 3.670006515020214*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    SubscriptBox["p", "M"], "'"}], "=", 
+   RowBox[{
+    SubscriptBox["p", "M"], 
+    RowBox[{"wM", "/", "wbarM"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  SubscriptBox["\[CapitalDelta]p", "M"], "=", 
+  RowBox[{"FullSimplify", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["p", "M"], "'"}], "-", 
+     SubscriptBox["p", "M"]}], "/.", 
+    RowBox[{"\[Epsilon]", "\[Rule]", "1"}]}], "]"}]}]}], "Input",
+ CellChangeTimes->{{3.625511466491294*^9, 3.6255115331069546`*^9}, {
+   3.6597184643367157`*^9, 3.659718465721245*^9}, {3.659718505218808*^9, 
+   3.659718517479911*^9}, 3.659718622712512*^9, {3.660425118688843*^9, 
+   3.6604251436671953`*^9}, 3.670006518384516*^9}],
+
+Cell[BoxData[
+ FractionBox[
+  RowBox[{
+   RowBox[{"(", 
+    RowBox[{
+     SubscriptBox["C", "S"], "-", 
+     RowBox[{"\[Omega]", " ", 
+      SubscriptBox["B", "S"], " ", 
+      SubscriptBox["p", "H"]}]}], ")"}], " ", 
+   RowBox[{"(", 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", 
+     SubscriptBox["p", "M"]}], ")"}], " ", 
+   SubscriptBox["p", "M"]}], 
+  RowBox[{"1", "+", 
+   RowBox[{
+    SubscriptBox["B", "S"], " ", 
+    RowBox[{"(", 
+     RowBox[{"1", "+", 
+      RowBox[{"\[Omega]", " ", 
+       SubscriptBox["p", "H"], " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", 
+         SubscriptBox["p", "M"]}], ")"}]}]}], ")"}]}], "-", 
+   RowBox[{
+    SubscriptBox["C", "S"], " ", 
+    SubscriptBox["p", "M"]}]}]]], "Output",
+ CellChangeTimes->{
+  3.6255115357242165`*^9, 3.6255144498586006`*^9, 3.625580695775757*^9, 
+   3.6265465011466217`*^9, 3.6267090264099197`*^9, 3.6267163582904673`*^9, 
+   3.62704726160019*^9, 3.627149819922868*^9, 3.659718486008801*^9, 
+   3.659718518531142*^9, {3.659718618831115*^9, 3.6597186421418753`*^9}, {
+   3.66042514607862*^9, 3.6604251656029243`*^9}, 3.660497865374515*^9, 
+   3.670006519483362*^9}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Equilibria/stability", "Section",
+ CellChangeTimes->{{3.6255116563832808`*^9, 3.625511660444687*^9}}],
+
+Cell[TextData[{
+ "We then solve for equilibria in the system (i.e., conditions under which \
+both host and symbiont allele frequencies do not change, ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["\[CapitalDelta]p", "H"], "=", 
+    SubscriptBox["\[CapitalDelta]p", "M"]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "= 0)."
+}], "Text",
+ CellChangeTimes->{{3.6700065414139147`*^9, 3.670006606758971*^9}, {
+  3.670006778500201*^9, 3.6700067820042048`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Eqs", "=", " ", 
+  RowBox[{"Solve", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      SubscriptBox["\[CapitalDelta]p", "H"], "\[Equal]", "0"}], " ", "&&", 
+     " ", 
+     RowBox[{
+      SubscriptBox["\[CapitalDelta]p", "M"], "\[Equal]", "0"}]}], ",", 
+    RowBox[{"{", 
+     RowBox[{
+      SubscriptBox["p", "H"], ",", 
+      SubscriptBox["p", "M"]}], "}"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.62551169787743*^9, 3.625511746343276*^9}, {
+  3.625511896140254*^9, 3.6255119038460245`*^9}, {3.6255120309077296`*^9, 
+  3.6255120352611647`*^9}, {3.6265485938439107`*^9, 3.6265486212368464`*^9}, {
+  3.659719059916049*^9, 3.659719062841567*^9}, {3.670006843548174*^9, 
+  3.670006843723097*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Solve", "::", "svars"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Equations may not give solutions for all \\\"solve\\\" \
+variables. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\
+\\\", ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/Solve/svars\\\", \
+ButtonNote -> \\\"Solve::svars\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.659719063853404*^9, 3.660498068491335*^9, 
+  3.670006610824799*^9, 3.670006844459363*^9}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["p", "M"], "\[Rule]", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["p", "H"], "\[Rule]", "0"}], ",", 
+     RowBox[{
+      SubscriptBox["p", "M"], "\[Rule]", "0"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      SubscriptBox["p", "H"], "\[Rule]", "1"}], ",", 
+     RowBox[{
+      SubscriptBox["p", "M"], "\[Rule]", "0"}]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.6255117477514167`*^9, 3.6255119060912495`*^9, 3.6255120372383623`*^9, 
+   3.625514452965911*^9, 3.62559235160474*^9, 3.626546511124214*^9, {
+   3.6265485972671795`*^9, 3.6265486237650948`*^9}, 3.6267100876899652`*^9, 
+   3.6267163650065975`*^9, 3.6270473066856985`*^9, 3.6271498235899386`*^9, {
+   3.659719047341092*^9, 3.659719063859108*^9}, 3.6604980684990883`*^9, 
+   3.670006610833686*^9, 3.670006844467593*^9}]
+}, Open  ]],
+
+Cell["\<\
+None of these are internal equilibria, which demonstrates that selective \
+dynamics modeled with this system of equations do not result in stable \
+maintenance of variation for either the host or symbiont.\
+\>", "Text",
+ CellChangeTimes->{{3.670006898575791*^9, 3.6700069388251057`*^9}}],
+
+Cell[TextData[{
+ "To evaluate the stability of these equilibria, we calculate the Jacobean \
+matrix for the system, based on the partial differentiation of each dynamic \
+equation with respect to ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", "H"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", "M"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "."
+}], "Text",
+ CellChangeTimes->{{3.670006618327134*^9, 3.6700066225831738`*^9}, {
+  3.6700067843243303`*^9, 3.670006838262067*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Jac", " ", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"D", "[", 
+        RowBox[{
+         SubscriptBox["\[CapitalDelta]p", "H"], ",", 
+         SubscriptBox["p", "H"]}], "]"}], ",", 
+       RowBox[{"D", "[", 
+        RowBox[{
+         SubscriptBox["\[CapitalDelta]p", "M"], ",", 
+         SubscriptBox["p", "H"]}], "]"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"D", "[", 
+        RowBox[{
+         SubscriptBox["\[CapitalDelta]p", "H"], ",", 
+         SubscriptBox["p", "M"]}], "]"}], ",", 
+       RowBox[{"D", "[", 
+        RowBox[{
+         SubscriptBox["\[CapitalDelta]p", "M"], ",", 
+         SubscriptBox["p", "M"]}], "]"}]}], "}"}]}], "}"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.6255118491685576`*^9, 3.62551185909255*^9}, {
+   3.6255119392385635`*^9, 3.6255119852781672`*^9}, 3.6255120179594345`*^9, {
+   3.659719069202175*^9, 3.6597190752006397`*^9}, 3.6597199763603277`*^9, 
+   3.670006846771047*^9}],
+
+Cell["\<\
+We then substitute each set of equilibrium conditions into the Jacobean to \
+calculate the eigenvalues at that multivariable equilibrium point.\
+\>", "Text",
+ CellChangeTimes->{{3.6700068524704723`*^9, 3.67000689250353*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{"Eigenvalues", "[", 
+   RowBox[{"Jac", "/.", 
+    RowBox[{"Eqs", "[", 
+     RowBox[{"[", "1", "]"}], "]"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.625512114012039*^9, 3.625512119401578*^9}, 
+   3.659719088265218*^9, {3.659719168479288*^9, 3.659719242554182*^9}, {
+   3.670006947549592*^9, 3.670006948597537*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0", ",", 
+   FractionBox[
+    RowBox[{
+     SubscriptBox["C", "S"], "-", 
+     RowBox[{"\[Omega]", " ", 
+      SubscriptBox["B", "S"], " ", 
+      SubscriptBox["p", "H"]}]}], 
+    RowBox[{"1", "+", 
+     SubscriptBox["B", "S"], "-", 
+     SubscriptBox["C", "S"]}]]}], "}"}]], "Output",
+ CellChangeTimes->{{3.6597192062692957`*^9, 3.659719243079894*^9}, 
+   3.670006950301136*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{"Eigenvalues", "[", 
+   RowBox[{"Jac", "/.", 
+    RowBox[{"Eqs", "[", 
+     RowBox[{"[", "2", "]"}], "]"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.6255121345460925`*^9, {3.6700083924683723`*^9, 3.670008393546351*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"-", 
+    FractionBox[
+     RowBox[{"\[Omega]", " ", 
+      SubscriptBox["C", "H"]}], 
+     RowBox[{
+      RowBox[{"-", "1"}], "+", 
+      SubscriptBox["C", "H"]}]]}], ",", 
+   RowBox[{"-", 
+    FractionBox[
+     SubscriptBox["C", "S"], 
+     RowBox[{"1", "+", 
+      SubscriptBox["B", "S"]}]]}]}], "}"}]], "Output",
+ CellChangeTimes->{3.6255121353961773`*^9, 3.6255144641290274`*^9, 
+  3.6267101905709686`*^9, 3.6267163764058175`*^9, 3.659719296810238*^9, 
+  3.670008397678315*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "This equilibrium, where ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["p", "H"], "=", 
+    SubscriptBox["p", "M"]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ "= 0, is only locally stable if ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["C", "H"], ">", "1"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ", which is outside the range we consider. (It would potentially result in \
+nonsensical fitness values.)"
+}], "Text",
+ CellChangeTimes->{{3.670008872598014*^9, 3.670008956719692*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"FullSimplify", "[", 
+  RowBox[{"Eigenvalues", "[", 
+   RowBox[{"Jac", "/.", 
+    RowBox[{"Eqs", "[", 
+     RowBox[{"[", "3", "]"}], "]"}]}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{
+  3.6255121390445423`*^9, {3.670008395322517*^9, 3.6700083961384687`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"-", 
+    FractionBox[
+     RowBox[{"\[Omega]", " ", 
+      SubscriptBox["C", "H"]}], 
+     RowBox[{"1", "+", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"-", "1"}], "+", "\[Omega]"}], ")"}], " ", 
+       SubscriptBox["C", "H"]}]}]]}], ",", 
+   FractionBox[
+    RowBox[{
+     RowBox[{
+      RowBox[{"-", "\[Omega]"}], " ", 
+      SubscriptBox["B", "S"]}], "+", 
+     SubscriptBox["C", "S"]}], 
+    RowBox[{
+     RowBox[{"-", "1"}], "+", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "+", "\[Omega]"}], ")"}], " ", 
+      SubscriptBox["B", "S"]}]}]]}], "}"}]], "Output",
+ CellChangeTimes->{3.625512140157654*^9, 3.625514471402755*^9, 
+  3.62671020150818*^9, 3.6267163784982576`*^9, 3.659719323853489*^9, 
+  3.670008399578597*^9}]
+}, Open  ]],
+
+Cell[TextData[{
+ "This equilibrium, where ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["p", "H"], "=", "1"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " and ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    SubscriptBox["p", "M"], "=", "0"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ", is locally stable when ",
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{"\[Omega]", " ", 
+    SubscriptBox["B", "S"]}], "<", 
+   SubscriptBox["C", "S"]}]],
+  CellChangeTimes->{3.625512140157654*^9, 3.625514471402755*^9, 
+   3.62671020150818*^9, 3.6267163784982576`*^9, 3.659719323853489*^9, 
+   3.670008399578597*^9}],
+ ". When  ",
+ Cell[BoxData[
+  RowBox[{
+   RowBox[{"\[Omega]", " ", 
+    SubscriptBox["B", "S"]}], ">", 
+   SubscriptBox["C", "S"]}]],
+  CellChangeTimes->{3.625512140157654*^9, 3.625514471402755*^9, 
+   3.62671020150818*^9, 3.6267163784982576`*^9, 3.659719323853489*^9, 
+   3.670008399578597*^9}],
+ ", ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["p", "M"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " increases until cooperative symbionts fix."
+}], "Text",
+ CellChangeTimes->{{3.670008598196432*^9, 3.670008657198378*^9}, {
+  3.670008692767722*^9, 3.67000877660191*^9}, {3.670008967320068*^9, 
+  3.670008969959908*^9}, {3.6700095400821238`*^9, 3.67000954162611*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"VectorPlot", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      SubscriptBox["\[CapitalDelta]p", "H"], ",", 
+      SubscriptBox["\[CapitalDelta]p", "M"]}], "}"}], "/.", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{
+       SubscriptBox["C", "H"], "\[Rule]", "0.25"}], ",", 
+      RowBox[{
+       SubscriptBox["B", "H"], "\[Rule]", "0.5"}], ",", 
+      RowBox[{
+       SubscriptBox["C", "S"], "\[Rule]", "0.25"}], ",", 
+      RowBox[{
+       SubscriptBox["B", "S"], "\[Rule]", "0.5"}], ",", 
+      RowBox[{"\[Omega]", "\[Rule]", "0.75"}]}], "}"}]}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["p", "H"], ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     SubscriptBox["p", "M"], ",", "0", ",", "1"}], "}"}], ",", 
+   RowBox[{"FrameLabel", "->", 
+    RowBox[{"{", 
+     RowBox[{
+      SubscriptBox["p", "H"], ",", 
+      SubscriptBox["p", "M"]}], "}"}]}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.670008995908615*^9, 3.670009005645252*^9}, {
+  3.6700090473486643`*^9, 3.670009094968701*^9}, {3.6700091981894217`*^9, 
+  3.670009198799892*^9}, {3.670009240230822*^9, 3.6700092408970957`*^9}, {
+  3.6700092775038643`*^9, 3.670009299854456*^9}, {3.6700093396062202`*^9, 
+  3.6700095702119493`*^9}, {3.6700096232246523`*^9, 3.670009651982088*^9}, {
+  3.670009704425769*^9, 3.6700097359545393`*^9}, {3.670009779813995*^9, 
+  3.6700097805301847`*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, 
+   {RGBColor[0.2947336, 0.4054232, 0.5678384000000001], 
+    {Arrowheads[{{0.00923790219124124, 1.}}], 
+     ArrowBox[{{0., 0.08159964266029335}, {0., 0.06125750019684951}}]}, 
+    {Arrowheads[{{0.017262571449298828`, 1.}}], 
+     ArrowBox[{{0., 0.16186349735394404`}, {0., 0.12385078836034166`}}]}, 
+    {Arrowheads[{{0.024029073221091886`, 1.}}], 
+     ArrowBox[{{0., 0.2407420904525579}, {0., 0.18782933811887065`}}]}, 
+    {Arrowheads[{{0.02949022622588546, 1.}}], 
+     ArrowBox[{{0., 0.318183474646321}, {0., 0.2532450967822504}}]}, 
+    {Arrowheads[{{0.03359646025733788, 1.}}], 
+     ArrowBox[{{0., 0.3941330723818847}, {0., 0.3201526419038295}}]}, 
+    {Arrowheads[{{0.0362956630472437, 1.}}], 
+     ArrowBox[{{0., 0.4685335072570105}, {0., 0.3886093498858465}}]}, 
+    {Arrowheads[{{0.03753301519658155, 1.}}], 
+     ArrowBox[{{0., 0.5413244222771358}, {0., 0.458675577722864}}]}, 
+    {Arrowheads[{{0.03725081207480274, 1.}}], 
+     ArrowBox[{{0., 0.6124422837637739}, {0., 0.5304148590933687}}]}, 
+    {Arrowheads[{{0.0353882714710626, 1.}}], 
+     ArrowBox[{{0., 0.6818201695755851}, {0., 0.6038941161387003}}]}, 
+    {Arrowheads[{{0.03188132564960597, 1.}}], 
+     ArrowBox[{{0., 0.7493875401581848}, {0., 0.6791838884132434}}]}, 
+    {Arrowheads[{{0.026662396313814306`, 1.}}], 
+     ArrowBox[{{0., 0.8150699907761256}, {0., 0.7563585806524452}}]}, 
+    {Arrowheads[{{0.01966015081725704, 1.}}], 
+     ArrowBox[{{0., 0.8787889830975472}, {0., 0.8354967311881666}}]}, 
+    {Arrowheads[{{0.010799237772859538`, 1.}}], 
+     ArrowBox[{{0., 0.9404615540958357}, {0., 0.9166813030470209}}]}, 
+    {Arrowheads[{{0.013451682138123205`, 1.}}], 
+     ArrowBox[{{0.05661806419641495, 0.}, {0.0862390786607279, 0.}}]}, 
+    {Arrowheads[{{0.014598017940278889`, 1.}}], 
+     ArrowBox[{{0.05827485286002015, 0.08066488337860336}, {
+      0.0845822899971227, 0.062192259478539486`}}]}, 
+    {Arrowheads[{{0.0188908950000497, 1.}}], 
+     ArrowBox[{{0.05979336436869964, 0.16009742016618816`}, {
+      0.08306377848844321, 0.12561686554809753`}}]}, 
+    {Arrowheads[{{0.02367406789846706, 1.}}], 
+     ArrowBox[{{0.06119021637392742, 0.23825625645030413`}, {
+      0.08166692648321543, 0.19031517212112442`}}]}, 
+    {Arrowheads[{{0.02789827676549501, 1.}}], 
+     ArrowBox[{{0.06247946635189737, 0.315098167100743}, {0.08037767650524548,
+       0.2563304043278284}}]}, 
+    {Arrowheads[{{0.031173750829061504`, 1.}}], 
+     ArrowBox[{{0.06367308635531901, 0.39057794872046786`}, {
+      0.07918405650182382, 0.32370776556524633`}}]}, 
+    {Arrowheads[{{0.033318474504996934`, 1.}}], 
+     ArrowBox[{{0.06478133589917837, 0.4646483051625789}, {0.0780758069579645,
+       0.3924945519802781}}]}, 
+    {Arrowheads[{{0.034223425531983195`, 1.}}], 
+     ArrowBox[{{0.06581305759997108, 0.5372597250039749}, {
+      0.07704408525717178, 0.4627402749960249}}]}, 
+    {Arrowheads[{{0.033808519431774715`, 1.}}], 
+     ArrowBox[{{0.06677591361467292, 0.6083603503086115}, {
+      0.07608122924246995, 0.5344967925485311}}]}, 
+    {Arrowheads[{{0.03200591905516924, 1.}}], 
+     ArrowBox[{{0.06767657626309179, 0.6778958359492672}, {
+      0.07518056659405108, 0.6078184497650182}}]}, 
+    {Arrowheads[{{0.028752827090234596`, 1.}}], 
+     ArrowBox[{{0.06852088286749362, 0.7458091986857485}, {
+      0.07433625998964921, 0.6827622298856797}}]}, 
+    {Arrowheads[{{0.023988004225251908`, 1.}}], 
+     ArrowBox[{{0.06931396240822735, 0.8120406551186385}, {0.0735431804489155,
+       0.7593879163099324}}]}, 
+    {Arrowheads[{{0.017649907757957186`, 1.}}], 
+     ArrowBox[{{0.07006033980420688, 0.8765274475500422}, {
+      0.07279680305293595, 0.8377582667356716}}]}, 
+    {Arrowheads[{{0.00967559357306228, 1.}}], 
+     ArrowBox[{{0.0707640222979761, 0.939203656685193}, {0.07209312055916674, 
+      0.9179392004576635}}]}, 
+    {Arrowheads[{{0.02440570446280177, 1.}}], 
+     ArrowBox[{{0.11598608994787223`, 0.}, {0.16972819576641346`, 0.}}]}, 
+    {Arrowheads[{{0.022979407175428578`, 1.}}], 
+     ArrowBox[{{0.11894592268374782`, 0.07969766139701498}, {
+      0.16676836303053788`, 0.06315948146012787}}]}, 
+    {Arrowheads[{{0.023799528536454555`, 1.}}], 
+     ArrowBox[{{0.12166878995889621`, 0.1582741678176776}, {
+      0.1640454957553895, 0.12744011789660808`}}]}, 
+    {Arrowheads[{{0.025803897626966027`, 1.}}], 
+     ArrowBox[{{0.12418205379819441`, 0.23569591516187927`}, {
+      0.16153223191609128`, 0.19287551340954925`}}]}, 
+    {Arrowheads[{{0.02805922911826835, 1.}}], 
+     ArrowBox[{{0.12650901975849568`, 0.31192794283372705`}, {
+      0.15920526595579002`, 0.2595006285948443}}]}, 
+    {Arrowheads[{{0.029969429457518466`, 1.}}], 
+     ArrowBox[{{0.12866966178636813`, 0.38693386459671714`}, {
+      0.15704462392791757`, 0.32735184968899705`}}]}, 
+    {Arrowheads[{{0.031185538967771584`, 1.}}], 
+     ArrowBox[{{0.1306811970076296, 0.4606757951559129}, {0.1550330887066561, 
+      0.3964670619869441}}]}, 
+    {Arrowheads[{{0.031497071463018306`, 1.}}], 
+     ArrowBox[{{0.13255854548662943`, 0.5331142721558505}, {
+      0.15315574022765627`, 0.4668857278441493}}]}, 
+    {Arrowheads[{{0.030766521379104714`, 1.}}], 
+     ArrowBox[{{0.13431470094566947`, 0.6042081732567064}, {
+      0.1513995847686162, 0.5386489696004362}}]}, 
+    {Arrowheads[{{0.02889505106813506, 1.}}], 
+     ArrowBox[{{0.1359610319335247, 0.6739146279225678}, {0.149753253780761, 
+      0.6117996577917176}}]}, 
+    {Arrowheads[{{0.025804725765736045`, 1.}}], 
+     ArrowBox[{{0.13750752820472512`, 0.742188923524182}, {
+      0.14820675750956058`, 0.6863825050472462}}]}, 
+    {Arrowheads[{{0.021429042135122194`, 1.}}], 
+     ArrowBox[{{0.13896300359599925`, 0.8089844053240166}, {
+      0.14675128211828647`, 0.7624441661045542}}]}, 
+    {Arrowheads[{{0.015707658725301072`, 1.}}], 
+     ArrowBox[{{0.1403352641051401, 0.8742523698735103}, {
+      0.14537902160914562`, 0.8400333444122036}}]}, 
+    {Arrowheads[{{0.00858332444097702, 1.}}], 
+     ArrowBox[{{0.14163124794203716`, 0.9379419513106434}, {
+      0.14408303777224854`, 0.9192009058322133}}]}, 
+    {Arrowheads[{{0.03298906662556679, 1.}}], 
+     ArrowBox[{{0.17796424870072558`, 0.}, {0.2506071798707029, 0.}}]}, 
+    {Arrowheads[{{0.03014190279107651, 1.}}], 
+     ArrowBox[{{0.18190458592032915`, 0.0786962557658734}, {
+      0.24666684265109937`, 0.06416088709126945}}]}, 
+    {Arrowheads[{{0.02885522412071662, 1.}}], 
+     ArrowBox[{{0.18554249785407642`, 0.15639091813411554`}, {
+      0.24302893071735215`, 0.12932336758017016`}}]}, 
+    {Arrowheads[{{0.028667367479733606`, 1.}}], 
+     ArrowBox[{{0.18891151496961345`, 0.23305766583978174`}, {
+      0.23965991360181507`, 0.19551376273164683`}}]}, 
+    {Arrowheads[{{0.029032630446735774`, 1.}}], 
+     ArrowBox[{{0.1920403876125551, 0.30866924719181765`}, {
+      0.23653104095887345`, 0.26275932423675374`}}]}, 
+    {Arrowheads[{{0.029466603552517515`, 1.}}], 
+     ArrowBox[{{0.19495390851328293`, 0.3831974385946546}, {
+      0.2336175200581456, 0.33108827569105964`}}]}, 
+    {Arrowheads[{{0.02960253063225675, 1.}}], 
+     ArrowBox[{{0.19767357111118455`, 0.45661300083091355`}, {
+      0.230897857460244, 0.4005298563119434}}]}, 
+    {Arrowheads[{{0.029181318030227183`, 1.}}], 
+     ArrowBox[{{0.200218100700281, 0.5288856329629478}, {0.2283533278711475, 
+      0.47111436703705206`}}]}, 
+    {Arrowheads[{{0.028021812666214733`, 1.}}], 
+     ArrowBox[{{0.20260388616601166`, 0.5999839237005252}, {
+      0.22596754240541686`, 0.5428732191566173}}]}, 
+    {Arrowheads[{{0.025994146005440054`, 1.}}], 
+     ArrowBox[{{0.20484533336274363`, 0.6698753000706612}, {
+      0.2237260952086849, 0.6158389856436243}}]}, 
+    {Arrowheads[{{0.0230009887345759, 1.}}], 
+     ArrowBox[{{0.2069551562372046, 0.7385259732133632}, {
+      0.22161627233422398`, 0.6900454553580648}}]}, 
+    {Arrowheads[{{0.018965435875716356`, 1.}}], 
+     ArrowBox[{{0.208944618127966, 0.805900881113776}, {0.21962681044346255`, 
+      0.765527690314795}}]}, 
+    {Arrowheads[{{0.013823371266666074`, 1.}}], 
+     ArrowBox[{{0.21082373291331633`, 0.871963628066789}, {
+      0.21774769565811225`, 0.8423220862189248}}]}, 
+    {Arrowheads[{{0.0075186477033747975`, 1.}}], 
+     ArrowBox[{{0.21260143359183348`, 0.9366764206545134}, {
+      0.2159699949795951, 0.920466436488343}}]}, 
+    {Arrowheads[{{0.039320301634513985`, 1.}}], 
+     ArrowBox[{{0.24242203380490523`, 0.}, {0.32900653762366616`, 0.}}]}, 
+    {Arrowheads[{{0.03557110365072422, 1.}}], 
+     ArrowBox[{{0.2470486866807169, 0.07765882170335311}, {0.3243798847478545,
+       0.06519832115378973}}]}, 
+    {Arrowheads[{{0.032950873498011596`, 1.}}], 
+     ArrowBox[{{0.2513351444921306, 0.15444466009682833`}, {
+      0.3200934269364408, 0.1312696256174574}}]}, 
+    {Arrowheads[{{0.031221059627354913`, 1.}}], 
+     ArrowBox[{{0.2553175982034441, 0.23033789757795647`}, {
+      0.31611097322512727`, 0.1982335309934721}}]}, 
+    {Arrowheads[{{0.03007556966578408, 1.}}], 
+     ArrowBox[{{0.2590272811126128, 0.30531832431475986`}, {
+      0.3124012903159586, 0.26611024711381154`}}]}, 
+    {Arrowheads[{{0.029193453859503185`, 1.}}], 
+     ArrowBox[{{0.2624912896569359, 0.3793651157275201}, {0.3089372817716355, 
+      0.3349205985581941}}]}, 
+    {Arrowheads[{{0.028283770412963295`, 1.}}], 
+     ArrowBox[{{0.2657332463714947, 0.4524568089352246}, {0.3056953250570767, 
+      0.4046860482076324}}]}, 
+    {Arrowheads[{{0.027106836356373478`, 1.}}], 
+     ArrowBox[{{0.2687738393149629, 0.5245712781107293}, {0.3026547321136085, 
+      0.47542872188927043`}}]}, 
+    {Arrowheads[{{0.025475477741585307`, 1.}}], 
+     ArrowBox[{{0.2716312640088246, 0.5956857086851891}, {0.2997973074197468, 
+      0.5471714341719535}}]}, 
+    {Arrowheads[{{0.023246543227696082`, 1.}}], 
+     ArrowBox[{{0.2743215878433961, 0.6657765703385794}, {0.2971069835851753, 
+      0.619937715375706}}]}, 
+    {Arrowheads[{{0.02031026635265617, 1.}}], 
+     ArrowBox[{{0.2768590523691851, 0.7348195887091357}, {0.2945695190593862, 
+      0.6937518398622925}}]}, 
+    {Arrowheads[{{0.016580911378968038`, 1.}}], 
+     ArrowBox[{{0.2792563254847096, 0.8027897157502563}, {
+      0.29217224594386176`, 0.7686388556783147}}]}, 
+    {Arrowheads[{{0.011989584595267649`, 1.}}], 
+     ArrowBox[{{0.2815247129488618, 0.8696610986588224}, {0.2899038584797096, 
+      0.8446246156268914}}]}, 
+    {Arrowheads[{{0.006479036249559616, 1.}}], 
+     ArrowBox[{{0.2836743366714353, 0.9354070472939621}, {
+      0.28775423475713613`, 0.9217358098488945}}]}, 
+    {Arrowheads[{{0.043510169841470415`, 1.}}], 
+     ArrowBox[{{0.30923749642346066`, 0.}, {0.40504821786225353`, 0.}}]}, 
+    {Arrowheads[{{0.03920895955562967, 1.}}], 
+     ArrowBox[{{0.31428206242625534`, 0.07658337925338493}, {
+      0.40000365185945885`, 0.06627376360375792}}]}, 
+    {Arrowheads[{{0.03574330523169196, 1.}}], 
+     ArrowBox[{{0.31897153198328, 0.1524321777784992}, {0.39531418230243426`, 
+      0.1332821079357865}}]}, 
+    {Arrowheads[{{0.032973124559798256`, 1.}}], 
+     ArrowBox[{{0.3233421241852178, 0.22753277282289275`}, {
+      0.39094359010049645`, 0.2010386557485358}}]}, 
+    {Arrowheads[{{0.030722301399973406`, 1.}}], 
+     ArrowBox[{{0.3274252943915027, 0.30187120269482004`}, {
+      0.38686041989421144`, 0.26955736873375136`}}]}, 
+    {Arrowheads[{{0.028793945634679203`, 1.}}], 
+     ArrowBox[{{0.3312484924875089, 0.37543315615608835`}, {
+      0.38303722179820526`, 0.3388525581296258}}]}, 
+    {Arrowheads[{{0.026989655705505808`, 1.}}], 
+     ArrowBox[{{0.3348357807773366, 0.4482039614140545}, {0.3794499335083776, 
+      0.40893889572880243`}}]}, 
+    {Arrowheads[{{0.025125743378490408`, 1.}}], 
+     ArrowBox[{{0.338208340918992, 0.5201685746949843}, {0.3760773733667222, 
+      0.47983142530501544`}}]}, 
+    {Arrowheads[{{0.02304255032959651, 1.}}], 
+     ArrowBox[{{0.34138489247242654`, 0.5913115683800826}, {
+      0.37290082181328765`, 0.5515455744770599}}]}, 
+    {Arrowheads[{{0.020607031923289627`, 1.}}], 
+     ArrowBox[{{0.3443820405320135, 0.6616171186845409}, {0.3699036737537007, 
+      0.6240971670297445}}]}, 
+    {Arrowheads[{{0.01771091237623468, 1.}}], 
+     ArrowBox[{{0.3472145660764363, 0.7310689928589331}, {0.3670711482092779, 
+      0.6975024357124949}}]}, 
+    {Arrowheads[{{0.014266818717885679`, 1.}}], 
+     ArrowBox[{{0.34989566975378333`, 0.7996505358912172}, {
+      0.36439004453193086`, 0.7717780355373539}}]}, 
+    {Arrowheads[{{0.010204012509132282`, 1.}}], 
+     ArrowBox[{{0.35243717758748966`, 0.8673446566864571}, {
+      0.3618485366982246, 0.8469410575992566}}]}, 
+    {Arrowheads[{{0.005464528761859289, 1.}}], 
+     ArrowBox[{{0.35484971536633353`, 0.9341338137001804}, {
+      0.35943599891938066`, 0.9230090434426762}}]}, 
+    {Arrowheads[{{0.04566228576911302, 1.}}], 
+     ArrowBox[{{0.3782965553863415, 0.}, {0.4788463017565155, 0.}}]}, 
+    {Arrowheads[{{0.041087538619162076`, 1.}}], 
+     ArrowBox[{{0.38351411079472714`, 0.07546780067370501}, {
+      0.47362874634812985`, 0.06738934218343784}}]}, 
+    {Arrowheads[{{0.037132616999369705`, 1.}}], 
+     ArrowBox[{{0.38838034083893774`, 0.15035003261068947`}, {
+      0.46876251630391924`, 0.13536425310359623`}}]}, 
+    {Arrowheads[{{0.03370970680499602, 1.}}], 
+     ArrowBox[{{0.39292957460861216`, 0.22463820930752265`}, {
+      0.4642132825342448, 0.2039332192639059}}]}, 
+    {Arrowheads[{{0.030715558212253278`, 1.}}], 
+     ArrowBox[{{0.3971918097377836, 0.29832367947429944`}, {
+      0.4599510474050734, 0.27310489195427196`}}]}, 
+    {Arrowheads[{{0.028034805826545044`, 1.}}], 
+     ArrowBox[{{0.40119337466386973`, 0.371397623015458}, {
+      0.45594948247898726`, 0.3428880912702562}}]}, 
+    {Arrowheads[{{0.025545735603490053`, 1.}}], 
+     ArrowBox[{{0.4049574729844937, 0.4438510468923863}, {0.4521853841583633, 
+      0.4132918102504707}}]}, 
+    {Arrowheads[{{0.023127026515311715`, 1.}}], 
+     ArrowBox[{{0.40850463369497747`, 0.5156747808637411}, {
+      0.4486382234478795, 0.48432521913625864`}}]}, 
+    {Arrowheads[{{0.0206638095051865, 1.}}], 
+     ArrowBox[{{0.4118530857601779, 0.5868594730992416}, {0.4452897713826791, 
+      0.5559976697579011}}]}, 
+    {Arrowheads[{{0.018051911217920474`, 1.}}], 
+     ArrowBox[{{0.41501907145197026`, 0.6573955856625316}, {
+      0.44212378569088673`, 0.6283187000517537}}]}, 
+    {Arrowheads[{{0.015199964215142685`, 1.}}], 
+     ArrowBox[{{0.4180171098215118, 0.7272733898585282}, {0.4391257473213452, 
+      0.7012980387128999}}]}, 
+    {Arrowheads[{{0.012029706644075598`, 1.}}], 
+     ArrowBox[{{0.4208602193253376, 0.7964829614404881}, {
+      0.43628263781751936`, 0.7749456099880827}}]}, 
+    {Arrowheads[{{0.008475072714514803, 1.}}], 
+     ArrowBox[{{0.42356010680699857`, 0.8650141756718351}, {
+      0.43358275033585836`, 0.8492715386138786}}]}, 
+    {Arrowheads[{{0.004480659322452232, 1.}}], 
+     ArrowBox[{{0.42612732862045455`, 0.9328567022375852}, {
+      0.4310155285224024, 0.9242861549052713}}]}, 
+    {Arrowheads[{{0.04587368524026629, 1.}}], 
+     ArrowBox[{{0.44949237277238935`, 0.}, {0.5505076272276104, 0.}}]}, 
+    {Arrowheads[{{0.04126378778719341, 1.}}], 
+     ArrowBox[{{0.45465939346063594`, 0.07430979638499777}, {
+      0.5453406065393639, 0.06854734647214507}}]}, 
+    {Arrowheads[{{0.0371077986029672, 1.}}], 
+     ArrowBox[{{0.45949388311449046`, 0.14819454377747743`}, {
+      0.5405061168855094, 0.13751974193680827`}}]}, 
+    {Arrowheads[{{0.033350209975258074`, 1.}}], 
+     ArrowBox[{{0.4640269417587521, 0.2216498602290625}, {0.5359730582412477, 
+      0.20692156834236602`}}]}, 
+    {Arrowheads[{{0.029931186225508884`, 1.}}], 
+     ArrowBox[{{0.46828590848498863`, 0.29467130335070923`}, {
+      0.5317140915150111, 0.2767572680778621}}]}, 
+    {Arrowheads[{{0.026786747711708934`, 1.}}], 
+     ArrowBox[{{0.4722949132814686, 0.3672543692670204}, {0.5277050867185311, 
+      0.34703134501869387`}}]}, 
+    {Arrowheads[{{0.023849688749576815`, 1.}}], 
+     ArrowBox[{{0.4760753344711317, 0.43939449154877364`}, {0.523924665528868,
+       0.4177483655940834}}]}, 
+    {Arrowheads[{{0.021051102481067185`, 1.}}], 
+     ArrowBox[{{0.47964618007245535`, 0.5110870401231339}, {
+      0.5203538199275444, 0.4889129598768659}}]}, 
+    {Arrowheads[{{0.018322259929450673`, 1.}}], 
+     ArrowBox[{{0.48302440744632164`, 0.5823273201610027}, {
+      0.5169755925536782, 0.5605298226961398}}]}, 
+    {Arrowheads[{{0.015596527987477304`, 1.}}], 
+     ArrowBox[{{0.4862251925742879, 0.6531105709409434}, {0.5137748074257118, 
+      0.6326037147733421}}]}, 
+    {Arrowheads[{{0.01281103606566196, 1.}}], 
+     ArrowBox[{{0.48926215799098033`, 0.7234319646891043}, {
+      0.5107378420090194, 0.7051394638823238}}]}, 
+    {Arrowheads[{{0.009907897092336169, 1.}}], 
+     ArrowBox[{{0.4921475665922524, 0.7932866053945482}, {0.5078524334077473, 
+      0.7781419660340229}}]}, 
+    {Arrowheads[{{0.006834911767637493, 1.}}], 
+     ArrowBox[{{0.49489248713428646`, 0.8626695275993735}, {
+      0.5051075128657133, 0.8516161866863402}}]}, 
+    {Arrowheads[{{0.0035457914177968596`, 1.}}], 
+     ArrowBox[{{0.49750693613318914`, 0.9315756951630045}, {
+      0.5024930638668106, 0.925567161979852}}]}, 
+    {Arrowheads[{{0.04423533933882824, 1.}}], 
+     ArrowBox[{{0.5227247880305183, 0.}, {0.6201323548266243, 0.}}]}, 
+    {Arrowheads[{{0.039802761610092614`, 1.}}], 
+     ArrowBox[{{0.5276372733876706, 0.07310689928589334}, {0.615219869469472, 
+      0.06975024357124952}}]}, 
+    {Arrowheads[{{0.03569751431172445, 1.}}], 
+     ArrowBox[{{0.5322478741698023, 0.14596176650004664`}, {
+      0.6106092686873402, 0.13975251921423906`}}]}, 
+    {Arrowheads[{{0.03188560300771137, 1.}}], 
+     ArrowBox[{{0.5365835881844357, 0.21856309246837763`}, {
+      0.6062735546727067, 0.21000833610305095`}}]}, 
+    {Arrowheads[{{0.028333753330042805`, 1.}}], 
+     ArrowBox[{{0.5406682871771694, 0.2909093559434114}, {0.6021888556799733, 
+      0.28051921548516007`}}]}, 
+    {Arrowheads[{{0.025009062847328355`, 1.}}], 
+     ArrowBox[{{0.5445231565590586, 0.3629990234833044}, {0.5983339862980839, 
+      0.3512866908024099}}]}, 
+    {Arrowheads[{{0.021878792941461202`, 1.}}], 
+     ArrowBox[{{0.548167062939949, 0.43483054932941123`}, {0.5946900799171937,
+       0.42231230781344575`}}]}, 
+    {Arrowheads[{{0.018910295307736136`, 1.}}], 
+     ArrowBox[{{0.5516168629276683, 0.5064023752823731}, {0.5912402799294741, 
+      0.49359762471762675`}}]}, 
+    {Arrowheads[{{0.016071062367520875`, 1.}}], 
+     ArrowBox[{{0.5548876638594212, 0.5777129305767071}, {0.5879694789977215, 
+      0.5651442122804354}}]}, 
+    {Arrowheads[{{0.013328883594748698`, 1.}}], 
+     ArrowBox[{{0.557993044973936, 0.6487606317538764}, {0.5848640978832066, 
+      0.636953653960409}}]}, 
+    {Arrowheads[{{0.010652082264953707`, 1.}}], 
+     ArrowBox[{{0.5609452458541024, 0.719543882533817}, {0.5819118970030401, 
+      0.7090275460376112}}]}, 
+    {Arrowheads[{{0.008009801394124114, 1.}}], 
+     ArrowBox[{{0.5637553276546986, 0.7900610736849027}, {0.579101815202444, 
+      0.7813674977436681}}]}, 
+    {Arrowheads[{{0.005372305263297959, 1.}}], 
+     ArrowBox[{{0.5664333115928736, 0.8603105828923238}, {0.5764238312642691, 
+      0.85397513139339}}]}, 
+    {Arrowheads[{{0.0027112647075706914`, 1.}}], 
+     ArrowBox[{{0.568988298356435, 0.9302907746248558}, {0.5738688445007076, 
+      0.9268520825180007}}]}, 
+    {Arrowheads[{{0.040832620928149176`, 1.}}], 
+     ArrowBox[{{0.597899804335863, 0.}, {0.6878144813784225, 0.}}]}, 
+    {Arrowheads[{{0.036773170416700536`, 1.}}], 
+     ArrowBox[{{0.60237158223496, 0.0718564472077062}, {0.6833427034793254, 
+      0.07100069564943663}}]}, 
+    {Arrowheads[{{0.03295551943087632, 1.}}], 
+     ArrowBox[{{0.6065812214296273, 0.14364746794270963`}, {0.679133064284658,
+       0.14206681777157606`}}]}, 
+    {Arrowheads[{{0.02935864635510088, 1.}}], 
+     ArrowBox[{{0.6105511156785346, 0.21537296262133798`}, {
+      0.6751631700357507, 0.21319846595009054`}}]}, 
+    {Arrowheads[{{0.02596366327364866, 1.}}], 
+     ArrowBox[{{0.6143011786498151, 0.28703283145771863`}, {
+      0.6714131070644702, 0.28439573997085277`}}]}, 
+    {Arrowheads[{{0.02275351235801894, 1.}}], 
+     ArrowBox[{{0.6178491780061615, 0.358626974463265}, {0.667865107708124, 
+      0.35565873982244917`}}]}, 
+    {Arrowheads[{{0.019712710351814332`, 1.}}], 
+     ArrowBox[{{0.6212110169024524, 0.43015529144616194`}, {
+      0.6645032688118329, 0.42698756569669505`}}]}, 
+    {Arrowheads[{{0.016827132675314972`, 1.}}], 
+     ArrowBox[{{0.6244009723063015, 0.5016176820108487}, {0.6613133134079838, 
+      0.49838231798915117`}}]}, 
+    {Arrowheads[{{0.014083830378498623`, 1.}}], 
+     ArrowBox[{{0.6274318976753546, 0.5730140455575008}, {0.6582823880389307, 
+      0.5698430972996418}}]}, 
+    {Arrowheads[{{0.01147087450317787, 1.}}], 
+     ArrowBox[{{0.6303153960593608, 0.6443442812815108}, {0.6553988896549247, 
+      0.6413700044327747}}]}, 
+    {Arrowheads[{{0.00897722346046475, 1.}}], 
+     ArrowBox[{{0.6330619685424504, 0.7156082881729661}, {0.6526523171718349, 
+      0.7129631403984621}}]}, 
+    {Arrowheads[{{0.006592609854595559, 1.}}], 
+     ArrowBox[{{0.635681142029053, 0.7868059650161268}, {0.6500331436852324, 
+      0.7846226064124443}}]}, 
+    {Arrowheads[{{0.004307443837504897, 1.}}], 
+     ArrowBox[{{0.6381815796509296, 0.8579372103889006}, {0.6475327060633558, 
+      0.8563485038968132}}]}, 
+    {Arrowheads[{{0.002112730597665635, 1.}}], 
+     ArrowBox[{{0.6405711764916538, 0.9290019226623171}, {0.6451431092226315, 
+      0.9281409344805395}}]}, 
+    {Arrowheads[{{0.03574572875864908, 1.}}], 
+     ArrowBox[{{0.6749291216408227, 0.}, {0.7536423069306054, 0.}}]}, 
+    {Arrowheads[{{0.032248539055248264`, 1.}}], 
+     ArrowBox[{{0.6787903150327532, 0.07055556324632435}, {0.7497811135386749,
+       0.07230157961081848}}]}, 
+    {Arrowheads[{{0.028964679740631133`, 1.}}], 
+     ArrowBox[{{0.6824358286848075, 0.14124710043076094`}, {
+      0.7461355998866207, 0.14446718528352476`}}]}, 
+    {Arrowheads[{{0.02587470065064731, 1.}}], 
+     ArrowBox[{{0.6858832428541126, 0.21207419058136512`}, {
+      0.7426881857173157, 0.2164972379900634}}]}, 
+    {Arrowheads[{{0.02296032670737918, 1.}}], 
+     ArrowBox[{{0.6891482776931706, 0.2830364144621591}, {0.7394231508782576, 
+      0.28839215696641235`}}]}, 
+    {Arrowheads[{{0.020204257671030453`, 1.}}], 
+     ArrowBox[{{0.6922450329239301, 0.35413335456419265`}, {
+      0.7363263956474979, 0.36015235972152154`}}]}, 
+    {Arrowheads[{{0.017590008314273868`, 1.}}], 
+     ArrowBox[{{0.6951861913845168, 0.4253645950966596}, {0.7333852371869113, 
+      0.4317782620461974}}]}, 
+    {Arrowheads[{{0.015101784163303437`, 1.}}], 
+     ArrowBox[{{0.6979831926461985, 0.4967297219780683}, {0.7305882359252298, 
+      0.5032702780219315}}]}, 
+    {Arrowheads[{{0.01272438868152855, 1.}}], 
+     ArrowBox[{{0.7006463817121636, 0.5682283228274672}, {0.7279250468592645, 
+      0.5746288200296753}}]}, 
+    {Arrowheads[{{0.010443158183630362`, 1.}}], 
+     ArrowBox[{{0.7031851368730524, 0.639859986955724}, {0.7253862916983758, 
+      0.6458542987585613}}]}, 
+    {Arrowheads[{{0.008243920935399085, 1.}}], 
+     ArrowBox[{{0.7056079800499808, 0.7116243053568587}, {0.7229634485214474, 
+      0.7169471232145694}}]}, 
+    {Arrowheads[{{0.006112976895510817, 1.}}], 
+     ArrowBox[{{0.707922672361091, 0.7835208706994294}, {0.7206487562103373, 
+      0.7879077007291415}}]}, 
+    {Arrowheads[{{0.004037094467934868, 1.}}], 
+     ArrowBox[{{0.710136297169799, 0.8555492773179717}, {0.7184351314016291, 
+      0.858736436967742}}]}, 
+    {Arrowheads[{{0.0020035205349662618`, 1.}}], 
+     ArrowBox[{{0.7122553324869416, 0.9277091212044897}, {0.7163160960844864, 
+      0.929433735938367}}]}, 
+    {Arrowheads[{{0.02905007359564841, 1.}}], 
+     ArrowBox[{{0.7537297115424297, 0.}, {0.8176988598861412, 0.}}]}, 
+    {Arrowheads[{{0.026316329775111107`, 1.}}], 
+     ArrowBox[{{0.7568253495542236, 0.06920113366542388}, {0.8146032218743474,
+       0.07365600919171895}}]}, 
+    {Arrowheads[{{0.02386877400341111, 1.}}], 
+     ArrowBox[{{0.7597564146165344, 0.1387557716236226}, {0.8116721568120365, 
+      0.1469585140906631}}]}, 
+    {Arrowheads[{{0.02166298120775781, 1.}}], 
+     ArrowBox[{{0.7625356906654579, 0.20866113037622785`}, {
+      0.8088928807631132, 0.2199102981952007}}]}, 
+    {Arrowheads[{{0.019650890230805143`, 1.}}], 
+     ArrowBox[{{0.765174670990506, 0.2789144555714511}, {0.8062539004380651, 
+      0.29251411585712034`}}]}, 
+    {Arrowheads[{{0.017782180785040756`, 1.}}], 
+     ArrowBox[{{0.7676837171019804, 0.3495130216235799}, {0.8037448543265905, 
+      0.3647726926621343}}]}, 
+    {Arrowheads[{{0.016006017469805584`, 1.}}], 
+     ArrowBox[{{0.7700721946959327, 0.4204541313384197}, {0.8013563767326383, 
+      0.43668872580443735`}}]}, 
+    {Arrowheads[{{0.014272869282576222`, 1.}}], 
+     ArrowBox[{{0.7723485904782293, 0.4917351155445727}, {0.7990799809503416, 
+      0.5082648844554271}}]}, 
+    {Arrowheads[{{0.012536116924215298`, 1.}}], 
+     ArrowBox[{{0.774520612919376, 0.5633533327304485}, {0.7969079585091949, 
+      0.579503810126694}}]}, 
+    {Arrowheads[{{0.010753246486530562`, 1.}}], 
+     ArrowBox[{{0.776595279461033, 0.6353061686869019}, {0.794833291967538, 
+      0.6504081170273834}}]}, 
+    {Arrowheads[{{0.008886551295703326, 1.}}], 
+     ArrowBox[{{0.7785789922530835, 0.7075910361553975}, {0.7928495791754875, 
+      0.7209803924160306}}]}, 
+    {Arrowheads[{{0.006903373467749415, 1.}}], 
+     ArrowBox[{{0.7804776041433843, 0.7802053744816009}, {0.7909509672851867, 
+      0.7912231969469702}}]}, 
+    {Arrowheads[{{0.0047759839190827415`, 1.}}], 
+     ArrowBox[{{0.7822964763530186, 0.8531466492742987}, {0.7891320950755524, 
+      0.8611390650114151}}]}, 
+    {Arrowheads[{{0.002481221306834267, 1.}}], 
+     ArrowBox[{{0.7840405290341128, 0.9264123520695537}, {0.787388042394458, 
+      0.9307305050733027}}]}, 
+    {Arrowheads[{{0.02081663027709569, 1.}}], 
+     ArrowBox[{{0.8342234296614202, 0.}, {0.8800622846242937, 0.}}]}, 
+    {Arrowheads[{{0.019116537074111525`, 1.}}], 
+     ArrowBox[{{0.8364121880839311, 0.06778978301377436}, {0.8778735262017826,
+       0.07506735984336849}}]}, 
+    {Arrowheads[{{0.017997571638315037`, 1.}}], 
+     ArrowBox[{{0.8384903443521131, 0.13616821123165918`}, {
+      0.8757953699336006, 0.14954607448262652`}}]}, 
+    {Arrowheads[{{0.017280292999944116`, 1.}}], 
+     ArrowBox[{{0.8404660752789321, 0.20512773792026842`}, {
+      0.8738196390067816, 0.22344369065116013`}}]}, 
+    {Arrowheads[{{0.01677443293680914, 1.}}], 
+     ArrowBox[{{0.8423467710472458, 0.2746609448012524}, {0.8719389432384679, 
+      0.296767626627319}}]}, 
+    {Arrowheads[{{0.016308605482674522`, 1.}}], 
+     ArrowBox[{{0.8441391275829317, 0.3447605393297928}, {0.8701465867027821, 
+      0.3695251749559214}}]}, 
+    {Arrowheads[{{0.01574510924386527, 1.}}], 
+     ArrowBox[{{0.845849226209975, 0.4154193520419965}, {0.8684364880757388, 
+      0.4417235051008605}}]}, 
+    {Arrowheads[{{0.014981171831825743`, 1.}}], 
+     ArrowBox[{{0.8474826025845653, 0.48663033396916183`}, {
+      0.8668031117011483, 0.5133696660308379}}]}, 
+    {Arrowheads[{{0.013943400690757205`, 1.}}], 
+     ArrowBox[{{0.849044306554728, 0.5583865541169588}, {0.8652414077309858, 
+      0.5844705887401839}}]}, 
+    {Arrowheads[{{0.012580698598165976`, 1.}}], 
+     ArrowBox[{{0.8505389543092226, 0.6306811970076295}, {0.8637467599764912, 
+      0.655033088706656}}]}, 
+    {Arrowheads[{{0.010858047109588997`, 1.}}], 
+     ArrowBox[{{0.8519707739501433, 0.7035075602833787}, {0.8623149403355705, 
+      0.7250638682880495}}]}, 
+    {Arrowheads[{{0.00875176545586003, 1.}}], 
+     ArrowBox[{{0.8533436454368333, 0.776859052369185}, {0.8609420688488806, 
+      0.7945695190593861}}]}, 
+    {Arrowheads[{{0.006246115147452524, 1.}}], 
+     ArrowBox[{{0.8546611356958224, 0.850729190193319}, {0.8596245785898915, 
+      0.8635565240923947}}]}, 
+    {Arrowheads[{{0.0033309337134558525`, 1.}}], 
+     ArrowBox[{{0.8559265295657983, 0.9251115969639163}, {0.8583591847199155, 
+      0.9320312601789402}}]}, 
+    {Arrowheads[{{0.011112259157580098`, 1.}}], 
+     ArrowBox[{{0.9163366617274729, 0.}, {0.9408061954153837, 0.}}]}, 
+    {Arrowheads[{{0.011083800573693871`, 1.}}], 
+     ArrowBox[{{0.917489719524951, 0.06631784603805843}, {0.9396531376179055, 
+      0.0765392968190844}}]}, 
+    {Arrowheads[{{0.012441202144004779`, 1.}}], 
+     ArrowBox[{{0.9185874729734043, 0.13347873380018735`}, {
+      0.9385553841694524, 0.15223555191409832`}}]}, 
+    {Arrowheads[{{0.014192788685393247`, 1.}}], 
+     ArrowBox[{{0.9196338077489431, 0.20146753529460082`}, {
+      0.9375090493939136, 0.2271038932768277}}]}, 
+    {Arrowheads[{{0.015772571097647674`, 1.}}], 
+     ArrowBox[{{0.9206322538482347, 0.27026948233039866`}, {
+      0.9365106032946219, 0.3011590890981728}}]}, 
+    {Arrowheads[{{0.016922334919342138`, 1.}}], 
+     ArrowBox[{{0.9215860253748948, 0.3398701558840097}, {0.9355568317679618, 
+      0.37441555840170443`}}]}, 
+    {Arrowheads[{{0.01752621635936826, 1.}}], 
+     ArrowBox[{{0.9224980551021267, 0.4102554758405368}, {0.9346448020407299, 
+      0.4468873813023202}}]}, 
+    {Arrowheads[{{0.01753114461475732, 1.}}], 
+     ArrowBox[{{0.923371024594634, 0.48141169109467113`}, {0.9337718325482224,
+       0.5185883089053286}}]}, 
+    {Arrowheads[{{0.016913281618178146`, 1.}}], 
+     ArrowBox[{{0.924207390541505, 0.55332536999656}, {0.9329354666013514, 
+      0.5895317728605824}}]}, 
+    {Arrowheads[{{0.015663381815815745`, 1.}}], 
+     ArrowBox[{{0.9250094078447071, 0.6259833911286834}, {0.9321334492981495, 
+      0.659730894585602}}]}, 
+    {Arrowheads[{{0.013779956214072648`, 1.}}], 
+     ArrowBox[{{0.9257791499201617, 0.6993729344004369}, {0.9313637072226949, 
+      0.7291984941709913}}]}, 
+    {Arrowheads[{{0.011265852521336887`, 1.}}], 
+     ArrowBox[{{0.9265185265962604, 0.7734814724477272}, {0.9306243305465962, 
+      0.7979470989808436}}]}, 
+    {Arrowheads[{{0.008126435424407746, 1.}}], 
+     ArrowBox[{{0.9272292999351279, 0.8482967623254603}, {0.9299135572077286, 
+      0.8659889519602535}}]}, 
+    {Arrowheads[{{0.004368565523157877, 1.}}], 
+     ArrowBox[{{0.9279130982525567, 0.9238068374813502}, {0.9292297588902998, 
+      0.9333360196615063}}]}, 
+    {Arrowheads[{{0.006037369148606473, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.06478133589917837}, {0.9999999999999998,
+       0.07807580695796448}}]}, 
+    {Arrowheads[{{0.011058834834707048`, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.13068119700762962`}, {
+      0.9999999999999998, 0.1550330887066561}}]}, 
+    {Arrowheads[{{0.015088022720220463`, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.19767357111118458`}, {
+      0.9999999999999998, 0.23089785746024397`}}]}, 
+    {Arrowheads[{{0.018147831523621826`, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.26573324637149476`}, {
+      0.9999999999999998, 0.3056953250570767}}]}, 
+    {Arrowheads[{{0.02026046076587549, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.33483578077733667`}, {
+      0.9999999999999998, 0.3794499335083775}}]}, 
+    {Arrowheads[{{0.02144743725518942, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.4049574729844937}, {0.9999999999999998, 
+      0.45218538415836323`}}]}, 
+    {Arrowheads[{{0.021729640376968257`, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.47607533447113176`}, {
+      0.9999999999999997, 0.5239246655288681}}]}, 
+    {Arrowheads[{{0.02112732625138061, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.548167062939949}, {0.9999999999999997, 
+      0.5946900799171936}}]}, 
+    {Arrowheads[{{0.019660150817256992`, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.6212110169024525}, {0.9999999999999997, 
+      0.664503268811833}}]}, 
+    {Arrowheads[{{0.0173471918975797, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.6951861913845169}, {0.9999999999999997, 
+      0.7333852371869114}}]}, 
+    {Arrowheads[{{0.014206970298601762`, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.7700721946959327}, {0.9999999999999997, 
+      0.8013563767326383}}]}, 
+    {Arrowheads[{{0.010257469991612363`, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.845849226209975}, {0.9999999999999997, 
+      0.8684364880757388}}]}, 
+    {Arrowheads[{{0.0055161574235469395`, 1.}}], 
+     ArrowBox[{{0.9999999999999997, 0.9224980551021267}, {0.9999999999999997, 
+      0.9346448020407299}}]}}},
+  AspectRatio->1,
+  DisplayFunction->Identity,
+  Frame->True,
+  FrameLabel->{
+    FormBox[
+     SubscriptBox["p", "H"], TraditionalForm], 
+    FormBox[
+     SubscriptBox["p", "M"], TraditionalForm]},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{
+   "DefaultBoundaryStyle" -> Automatic, "TransparentPolygonMesh" -> True},
+  PlotRange->{{-0.05050762722761054, 
+   1.0505076272276106`}, {-0.05050762722761054, 1.0505076272276106`}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.05], 
+     Scaled[0.05]}, {
+     Scaled[0.05], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{
+  3.670009095997464*^9, 3.6700091999523363`*^9, {3.670009286469864*^9, 
+   3.670009302193747*^9}, {3.6700093861102247`*^9, 3.670009427603324*^9}, {
+   3.670009467160289*^9, 3.670009548573936*^9}, {3.670009626071776*^9, 
+   3.6700096617169113`*^9}, {3.670009710023521*^9, 3.670009737288774*^9}, 
+   3.670009781478271*^9}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{1050, 739},
+WindowMargins->{{Automatic, 48}, {2, Automatic}},
+PrintingCopies->1,
+PrintingPageRange->{1, Automatic},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (December 4, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 728, 12, 159, "Text"],
+Cell[CellGroupData[{
+Cell[1310, 36, 92, 1, 80, "Section"],
+Cell[1405, 39, 2161, 41, 327, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3603, 85, 163, 2, 80, "Section"],
+Cell[3769, 89, 412, 7, 61, "Text"],
+Cell[CellGroupData[{
+Cell[4206, 100, 1393, 32, 78, "Input"],
+Cell[5602, 134, 1375, 37, 70, "Output"]
+}, Open  ]],
+Cell[6992, 174, 187, 4, 37, "Text"],
+Cell[CellGroupData[{
+Cell[7204, 182, 1143, 28, 78, "Input"],
+Cell[8350, 212, 1295, 34, 72, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9682, 251, 160, 2, 54, "Subsection"],
+Cell[9845, 255, 511, 8, 85, "Text"],
+Cell[CellGroupData[{
+Cell[10381, 267, 103, 1, 43, "Subsubsection"],
+Cell[10487, 270, 1992, 53, 78, "Input"],
+Cell[12482, 325, 964, 28, 89, "Text"],
+Cell[CellGroupData[{
+Cell[13471, 357, 226, 4, 36, "Input"],
+Cell[13700, 363, 360, 10, 36, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14109, 379, 113, 1, 43, "Subsubsection"],
+Cell[14225, 382, 2223, 56, 78, "Input"],
+Cell[16451, 440, 1283, 35, 140, "Text"],
+Cell[CellGroupData[{
+Cell[17759, 479, 533, 8, 36, "Input"],
+Cell[18295, 489, 443, 9, 36, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18811, 506, 165, 2, 80, "Section"],
+Cell[18979, 510, 289, 5, 61, "Text"],
+Cell[CellGroupData[{
+Cell[19293, 519, 92, 1, 54, "Subsection"],
+Cell[CellGroupData[{
+Cell[19410, 524, 758, 20, 58, "Input"],
+Cell[20171, 546, 1346, 36, 59, "Output"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21566, 588, 148, 2, 54, "Subsection"],
+Cell[CellGroupData[{
+Cell[21739, 594, 739, 20, 58, "Input"],
+Cell[22481, 616, 1165, 34, 59, "Output"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[23707, 657, 107, 1, 80, "Section"],
+Cell[23817, 660, 477, 12, 64, "Text"],
+Cell[CellGroupData[{
+Cell[24319, 676, 722, 18, 37, "Input"],
+Cell[25044, 696, 511, 10, 29, "Message"],
+Cell[25558, 708, 933, 24, 36, "Output"]
+}, Open  ]],
+Cell[26506, 735, 297, 5, 61, "Text"],
+Cell[26806, 742, 556, 16, 63, "Text"],
+Cell[27365, 760, 1016, 28, 37, "Input"],
+Cell[28384, 790, 234, 4, 61, "Text"],
+Cell[CellGroupData[{
+Cell[28643, 798, 376, 8, 36, "Input"],
+Cell[29022, 808, 419, 13, 58, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[29478, 826, 283, 7, 36, "Input"],
+Cell[29764, 835, 533, 17, 58, "Output"]
+}, Open  ]],
+Cell[30312, 855, 552, 17, 63, "Text"],
+Cell[CellGroupData[{
+Cell[30889, 876, 283, 7, 36, "Input"],
+Cell[31175, 885, 839, 28, 58, "Output"]
+}, Open  ]],
+Cell[32029, 916, 1309, 40, 63, "Text"],
+Cell[CellGroupData[{
+Cell[33363, 960, 1413, 36, 58, "Input"],
+Cell[34779, 998, 33373, 628, 466, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
