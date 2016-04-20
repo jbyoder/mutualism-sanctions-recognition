@@ -41,11 +41,11 @@ Similar recognition may play a role in mutualism, though it is not often incorpo
 
 These interspecific signals demonstrate that successful mutualistic interactions rely on more than the quality of goods or services exchanged; communication between potential partners also is necessary to attract and establish mutualisms. Because signaling and benefits are likely independent traits in most mutualisms, a model incorporating independent, coevolving genetic systems for signal exchange and mutualist performance might better capture the complexity of empirical systems. Here, we develop and evaluate models of host-symbiont mutualism mediated by (1) host sanctions against non-cooperative symbionts, (2) host recognition of symbiont signals that are independent of symbiont quality, and (3) host sanctioning of non-cooperators paired with recognition of symbionts. 
 
-After considering analytic models of allele frequency dynamics in individual populations of hosts and symbionts, we use individual-based coevolutionary simulations to examine a wider range of parameters, and to incorporate the effects of genetic drift across a metapopulation of sites connected by migration. We show that the model incorporating both recogition and sanctions is a better fit for empirical observations of variation in mutualism outcome than models with only sanctions or partner recognition alone. Evaluation of this model also reveals conditions under which mutualisms should evolve as predicted by simpler models of host-symbiont interaction.
+After developing analytic models of allele frequency dynamics within a population of hosts and symbionts, we use individual-based coevolutionary simulations to examine a wider range of parameters, and to incorporate the effects of genetic drift across a metapopulation of sites connected by migration. We show that the model incorporating both recogition and sanctions is a better fit for empirical observations of variation in mutualism outcome than models with only sanctions or partner recognition alone. Evaluation of this model also reveals conditions under which mutualisms should evolve as predicted by simpler models of host-symbiont interaction.
 
 
-The Models
-----------
+Analytic Models
+---------------
 
 In all three models, we consider the interaction of haploid hosts and symbionts and track allele frequencies in both species within a single population. We assume that hosts and symbionts encounter each other at random, and that each receives a benefit $B$ and pays a cost $C$ of interaction. For both host and symbiont we assume that fitness is equal to $1+P$, where $P$ is the payout (i.e., net benefit) from the interaction with the other species. Payout is determined by host and symbiont genotype, by the possible benefit ($B_i$) and the cost ($C_i$) of interaction to each species $i$, and by the nature of the host-symbiont interaction.
 
@@ -135,7 +135,7 @@ Finally, we can approximate change in linkage disequilibrium (LD) between the sy
 \Delta \delta_S \approx - \frac{1}{2} \left[p_M(1-p_M) p_S(1-p_S) (2p_R-1) C_S + \delta_S \right]
 \end{equation}
 
-Note the approximations for change in allele frequencies do not refer to the LD terms $\delta_S$ --- as a conseqeunce of the assumption that LD is weak, the approximated change in allele frequency at each symbiont locus is independent of LD with the other symbiont locus. Also note that $\Delta\delta_S$ has the opposite sign of $\delta_S$, which means that LD between the symbiont cooperation and signaling loci will evolve toward zero, unless $-p_M(1-p_M) p_S(1-p_S) (2p_R-1) C_S < \delta_S < 0$, or $0 < \delta_S < - p_M(1-p_M) p_S(1-p_S) (2p_R-1) C_S$. For parameter values meeting the assumptions of the approximation (small $C_S$) this means that LD between symbiont loci will be negligible.
+Note the approximations for change in allele frequencies do not refer to the LD terms $\delta_S$ --- as a conseqeunce of the assumption that LD is weak, changes in allele frequency at each symbiont locus are independent. Also note that $\Delta\delta_S$ has the opposite sign of $\delta_S$, which means that LD between the symbiont cooperation and signaling loci will evolve toward zero, unless $-p_M(1-p_M) p_S(1-p_S) (2p_R-1) C_S < \delta_S < 0$, or $0 < \delta_S < - p_M(1-p_M) p_S(1-p_S) (2p_R-1) C_S$. For parameter values meeting the assumptions of the approximation (small $C_S$) this means that LD between symbiont loci will remain negligible.
 
 ### Recognition with sanctions
 
@@ -209,47 +209,11 @@ And, for the symbiont
 
 As in the host-symbiont recognition model, the approximations for change in allele frequencies do not include the terms $\delta_H$ and $\delta_S$, meaning that LD between loci does not contribute to the approximated change in allele frequencies for either species. For the hosts, $\Delta\delta_H$ and $\delta_H$ have opposite signs, and LD between the sanctions and recognition loci evolves toward zero, unless $-p_H(1 - p_H) p_R (1 - p_R) (1 - p_M) (2 p_S - 1)\omega C_H < \delta_H < 0$ or $0 < \delta_H < -p_H(1 - p_H) p_R (1 - p_R) (1 - p_M) (2 p_S - 1)\omega C_H$. In symbionts, LD between the cooperation and signaling loci evolves toward zero unless $-p_M(1-p_M)p_S(1-p_S)[ p_R - p_H(1-p_R) ] (B_S-C_S) < \delta_S < 0$ or $0 < \delta_S < -p_M(1-p_M)p_S(1-p_S)[ p_R - p_H(1-p_R)] (B_S-C_S)$. In both species, the conditions required for the approximation (small cost, $C_i$ and benefit, $B_i$ terms for each species) make the values of LD in these ranges negligibly small. 
 
-### Individual-based simulations
 
-The above analytic models provide good insight into coevolutionary dynamics. However, the approximations necessary to derive our results may limit the models' generality. Also, models of dynamics in a single population do not account for the effects of geographic spatial structure, which can contribute to variation in coevolving species [@Thompson2005a; @Thompson2013a; @Yoder2010d; @Nuismer1999]. To examine a broader range of parameter space and the effects of spatial structure, we constructed an individual-based simulation of coevolution for each of the three models described above. These simulations let me examine the effects of stronger selection arising from the interaction, the effects of migration and drift (effective population size), and linkage between host and symbiont loci.
+Model evaluation
+----------------
 
-\begin{table*}
-\caption{Parameter values for the individual-based simulations.}
-\centering
-\begin{tabular}{@{}rcc@{}} 
- & & \\ \toprule
-Parameter\textsuperscript{1} & Host & Symbiont\\ \midrule
-\multicolumn{3}{l}{\emph{For metapopulation structure}} \\
-$N$, number of sites & 50 & 50 \\
-$K$, per-site population size & $U(20,200)$ & $U(200,2000)$ \\
-$m$, among-site migration rate & $U(0,0.05)$ & $U(0,0.05)$ \\ \addlinespace
-\multicolumn{3}{l}{\emph{For interaction payouts}} \\
-$C$, cost of symbiosis & $U(0.01,0.5)$ & $U(0.01,0.5)$ \\ 
-$B$, benefit of symbiosis & $C_H \times U(1,10)$ & $C_S \times U(1,100)$ \\
-$\omega$, effectiveness of sanctions & $U(0.1,0.9)$ & $U(0.1,0.9)$ \\ \addlinespace
-\multicolumn{3}{l}{\emph{For genetics}} \\
-$r$, recombination rate & $U(0,0.05)$ & $U(0,0.05)$ \\
-$\mu$, mutation rate & $10^{-6}$ & $10^{-6}$ \\ \bottomrule \addlinespace
-\multicolumn{3}{l}{\textsuperscript{1} Parameters are either point values, or drawn from} \\
-\multicolumn{3}{l}{a uniform distribution with range $U(min,max)$.} \\
-\end{tabular}
-\end{table*}
-
-Parameters for the simulations are listed in Table 4. The simulation script (available at [github.com/barbar](http://github.com/barbar)), which runs in R [@RCoreTeam2015], creates $N$ populations of $K_i$ haploid individuals for each species $i$. A simulation starts by randomly creating individuals' genotypes of one or two loci, depending on the model simulated, based on starting allele frequencies drawn from an approximation of the allele frequency spectrum for a standard neutral coalescent model at equilibrium [@Ganapathy2009]. After creation of the starting populations, the simulation proceeds through the following generational cycle:
-
-*Mating.* Mating occurs between pairs of hermaphroditic individuals of each species, drawn at random from the same population, with replacement. Each mating produces one offspring, with genotypes at each locus drawn from the parental genotypes. In two-locus species, recombination between loci occurs with probability $r_i$, and mutation from one allele to the alternate allele occurs with probability $\mu_i$ for each locus. The simulation script draws mated pairs until $K_i$ offspring are created, then replaces the parental population with those offspring.
-
-*Migration.* A proportion $m_i$ of the individuals in each population are selected at random to join a global migrant pool, which are then distributed at random back among the $N$ populations.
-
-*Coevolutionary selection.* Within each population, hosts interact with randomly-drawn symbionts, with each individual's fitness outcome from the interaction determined by their genotype and the genotype of their host or symbiote, following one of the three models outlined above. All hosts interact; symbionts that are not drawn for interaction with a host are lost from the population. Interacting individuals of both species survive to be used as parents for the next generation if their fitness outcome from the interaction exceed a normally distributed random value; an additional 5\% of individuals are randomly drawn to survive in each population, preventing local extinctions.
-
-We ran 1,000 replicate individual-based simulations for each of the three genetic models of host-symbiont mutualism, as well as 1,000 replicate simulations of host and symbiont evolution with no coevolutionary selection, to provide a neutral expectation of results from drift and migration across the metapopulation. Simulation parameters were either held constant across all replicates or drawn at random from a uniform distribution of reasonable values (Table 4).
-
-
-Analytic models of within-population dynamics
----------------------------------------------
-
-For each of the three analytic models, we solve for equilibria in the models derived above. We are particularly interested in equilibria that maintain intermediate frequencies of mutualistic symbionts (i.e., $0 < p_M < 1$), indicating conditions under which coevolutionary selection permits genetic variation in mutualist quality [@Heath2013]; but genetic variation in the outcomes of symbiosis is also implied by equilibria with intermediate frequencies at the host recognition and symbiont signaling loci. Full details of these analyses are given in Mathematica notebooks, available at [github.com/barbar](http://github.com/barbar).
+For each of the three analytic models, we solve for equilibria in the models derived above. We are particularly interested in equilibria that maintain intermediate frequencies of mutualistic symbionts (i.e., $0 < p_M < 1$), indicating conditions under which coevolutionary selection permits genetic variation in mutualist quality [@Heath2013]; but genetic variation in the outcomes of symbiosis is also implied by equilibria with intermediate frequencies at the host recognition and symbiont signaling loci. Full details of these analyses are given in Mathematica notebooks, available at [github.com/jbyoder/mutualism-sanctions-recognition](https://github.com/jbyoder/mutualism-sanctions-recognition).
 
 \begin{figure}[t]
 \centering
@@ -269,7 +233,7 @@ The model of host sanctions in a single population has equilibria when $p_M = 0$
 
 ### Partner recognition
 
-Perhaps the most important feature of the model of partner recognition is that its approximation of change in the frequency of the symbiont cooperation allele $\Delta p_M$, is necessarily less than or equal to zero for all reasonable parameter values (see derivation in the "recognition" Mathematica notebook at [github.com/barbar](http://github.com/barbar)). That is, there is no condition under which a rare cooperative symbiont genotype would increase in frequency until fixation. This means that the system can be fairly described as a mutualism ($p_M > 0$) only if the cooperation allele is already present at non-zero frequency in the population, and conditions prevent its loss (i.e., $\Delta p_M = 0$, its maximum value). There are multiple such coevolutionary equilbria for the partner recognition system, including some where $p_M > 0$.
+Perhaps the most important feature of the model of partner recognition is that its approximation of change in the frequency of the symbiont cooperation allele $\Delta p_M$, is necessarily less than or equal to zero for all reasonable parameter values (see derivation in the "recognition" Mathematica notebook at [github.com/jbyoder/mutualism-sanctions-recognition](https://github.com/jbyoder/mutualism-sanctions-recognition)). That is, there is no condition under which a rare cooperative symbiont genotype would increase in frequency until fixation. This means that the system can be fairly described as a mutualism ($p_M > 0$) only if the cooperation allele is already present at non-zero frequency in the population, and conditions prevent its loss (i.e., $\Delta p_M = 0$, its maximum value). There are multiple such coevolutionary equilbria for the partner recognition system, including some where $p_M > 0$.
 
 \begin{figure*}[tp]
 \centering
@@ -305,6 +269,8 @@ These individual cases illustrate the balance between coevolution at the recogni
 Individual-based simulations
 ----------------------------
 
+Our analytic models provide good insight into coevolutionary dynamics. However, the approximations necessary to derive our results may limit the models' generality. Also, models of dynamics in a single population do not account for the effects of geographic spatial structure, which can contribute to variation in coevolving species [@Thompson2005a; @Thompson2013a; @Yoder2010d; @Nuismer1999]. To examine a broader range of parameter space and the effects of spatial structure, we constructed an individual-based simulation of coevolution between hosts and symbionts in a metapopulation of sites linked by migration. These simulations let us examine the effects of stronger selection, migration and drift (effective population size), and linkage between host and symbiont loci. We ran 1,000 replicate simulations of each of the three host-symbiont models, and 1,000 replicate simulations of neutral evolution, as a standard for comparison (see Methods, below).
+
 \begin{figure*}[tp]
 \centering
 \includegraphics{{../figures/sims_all_p-Vg-varp.pdf}}
@@ -313,7 +279,7 @@ Individual-based simulations
 
 ### Frequency of sanctioning hosts and cooperative symbionts
 
-After 1,000 generations of host-symbiont coevolution, individual-based simulations with host sanctions ended with the host sanctioning allele at significantly higher frequency, averaged across all sites in the meta-population, than expected from the neutral simulations (Figure 5A; $p < 1 \times 10^{-6}$, one-sided t-test on arcsine-transformed values). At the same time, simulations of sanctions with recognition achieved lower global mean frequency of sanctioning hosts than simulations of sanctions alone ($p < 1 \times 10^{-6}$). In simulations of sanctions alone, the global mean frequency of sanctions was strongly negatively correlated with the cost of symbiosis ($\rho = -0.53$, $p < 1 \times 10^{-6}$), and with the benefits of symbiosis to hosts ($\rho = -0.37$, $p < 1 \times 10^{-6}$). By contrast, in simulations of sanctions with recognition the relationships between the cost and benefit of symbiosis and the frequency of sanctions were weak ($\rho = 0.04$, $p = 0.2155$; and $\rho = -0.01$, $p = 0.7752$).
+After 1,000 generations of host-symbiont coevolution, individual-based simulations with host sanctions ended with the host sanctioning allele at significantly higher frequency, averaged across all sites in the metapopulation, than expected from the neutral simulations (Figure 5A; $p < 1 \times 10^{-6}$, one-sided t-test on arcsine-transformed values). At the same time, simulations of sanctions with recognition achieved lower global mean frequency of sanctioning hosts than simulations of sanctions alone ($p < 1 \times 10^{-6}$). In simulations of sanctions alone, the global mean frequency of sanctions was strongly negatively correlated with the cost of symbiosis ($\rho = -0.53$, $p < 1 \times 10^{-6}$), and with the benefits of symbiosis to hosts ($\rho = -0.37$, $p < 1 \times 10^{-6}$). By contrast, in simulations of sanctions with recognition the relationships between the cost and benefit of symbiosis and the frequency of sanctions were weak ($\rho = 0.04$, $p = 0.2155$; and $\rho = -0.01$, $p = 0.7752$).
 
 Each of the three models, sanctions and recognition alone maintained cooperative symbionts at higher frequency than expected from the neutral simulations (Figure 5A; t-test $p = 0.01$, $0.05$, and $0.07$, respectively), though the differences in expected frequency of cooperative symbionts were only marginally greater than seen in the neutral simulations. Cooperative symbionts were generally maintained in the simulated meta-populations, though at low frequency; the median global average frequency of cooperative symbionts was 0.15 in simulations of sanctions alone, 0.16 in simulations of recognition alone, and 0.15 in simulations with both systems. However, in all three models the cooperation alleles were more often lost than alleles in neutral simulations (19\% of sanctions-only simulations, 25\% of recognition-only, and 25\% of simulations with both; compared to 9\% of neutral simulations). There was no significant correlation between the frequency of cooperative symbionts and the costs or benefits of symbiosis to symbionts, in any of the three models.
 
@@ -396,6 +362,48 @@ An observation supporting partner fidelity feedback models is that sanctioning m
 This conceptual link between partner fidelity feedback models and earlier models of mutualism is one of several advantages of modelling mutualism as mediated by two separate genetic systems. As in models of host-parasite interaction [@Dybdahl2014], considering multiple forms of host-symbiont interaction interacting simultaneously reveals a picture of mutualism that better captures the complexity of empirical systems [@Triplett1992; @Heath2009; @Svensson2005; @Soler2011; @Edwards2006a], and offers a partial explanation for the paradox that has emerged from theory and empirical study --- that contemporary populations of mutualists often exhbibit considerable genetic variation for mutualism performance, yet these interactions are stable over evolutionary time [@Heath2013]. 
 
 Future empirical study of mutualism must anticipate that multiple genetic systems, which may experience very different forms of coevolutionary selection, can contribute to the outcomes of cooperative interactions between species. Research in the legume-rhizobium symbiosis, the mutualism in which specific causal genes are best understood, already provides an example for studies of other systems, through experimental manipulations that account for recognition and sanctioning responses separately [e.g., @Regus2014; @Stanton-Geddes2013] and using population genomics data to differentiate candidate genes experiencing different forms of selection [e.g., @Paape2013b; @Bonhomme2015]. For many well-studied mutualisms, the genetic resources necessary for the latter are still in the earliest stages of development. These resources must be built with the expectation that the genetic systems mediating mutualism can be more complex than we have previously thought.
+
+
+Methods
+-------
+
+### Analytic models
+
+Full details of the derivation of our analytic models of host and symbiont coevolution, and evaluation of equilibrium conditions in those models, are available as Mathematica notebooks provided at [github.com/jbyoder/mutualism-sanctions-recognition](https://github.com/jbyoder/mutualism-sanctions-recognition).
+
+### Individual-based simulations
+
+Parameters for the simulations are listed in Table 4. The simulation script (available at [github.com/jbyoder/mutualism-sanctions-recognition](https://github.com/jbyoder/mutualism-sanctions-recognition)), which runs in R [@RCoreTeam2015], creates $N$ populations of $K_i$ haploid individuals for each species $i$. A simulation starts by randomly creating individuals' genotypes of one or two loci, depending on the model simulated, based on starting allele frequencies drawn from an approximation of the allele frequency spectrum for a standard neutral coalescent model at equilibrium [@Ganapathy2009]. After creation of the starting populations, the simulation proceeds through the following generational cycle:
+
+\begin{table*}
+\caption{Parameter values for the individual-based simulations.}
+\centering
+\begin{tabular}{@{}rcc@{}} 
+ & & \\ \toprule
+Parameter\textsuperscript{1} & Host & Symbiont\\ \midrule
+\multicolumn{3}{l}{\emph{For metapopulation structure}} \\
+$N$, number of sites & 50 & 50 \\
+$K$, per-site population size & $U(20,200)$ & $U(200,2000)$ \\
+$m$, among-site migration rate & $U(0,0.05)$ & $U(0,0.05)$ \\ \addlinespace
+\multicolumn{3}{l}{\emph{For interaction payouts}} \\
+$C$, cost of symbiosis & $U(0.01,0.5)$ & $U(0.01,0.5)$ \\ 
+$B$, benefit of symbiosis & $C_H \times U(1,10)$ & $C_S \times U(1,100)$ \\
+$\omega$, effectiveness of sanctions & $U(0.1,0.9)$ & $U(0.1,0.9)$ \\ \addlinespace
+\multicolumn{3}{l}{\emph{For genetics}} \\
+$r$, recombination rate & $U(0,0.05)$ & $U(0,0.05)$ \\
+$\mu$, mutation rate & $10^{-6}$ & $10^{-6}$ \\ \bottomrule \addlinespace
+\multicolumn{3}{l}{\textsuperscript{1} Parameters are either point values, or drawn from} \\
+\multicolumn{3}{l}{a uniform distribution with range $U(min,max)$.} \\
+\end{tabular}
+\end{table*}
+
+*Mating.* Mating occurs between pairs of hermaphroditic individuals of each species, drawn at random from the same population, with replacement. Each mating produces one offspring, with genotypes at each locus drawn from the parental genotypes. In two-locus species, recombination between loci occurs with probability $r_i$, and mutation from one allele to the alternate allele occurs with probability $\mu_i$ for each locus. The simulation script draws mated pairs until $K_i$ offspring are created, then replaces the parental population with those offspring.
+
+*Migration.* A proportion $m_i$ of the individuals in each population are selected at random to join a global migrant pool, which are then distributed at random back among the $N$ populations.
+
+*Coevolutionary selection.* Within each population, hosts interact with randomly-drawn symbionts, with each individual's fitness outcome from the interaction determined by their genotype and the genotype of their host or symbiote, following one of the three models outlined above. All hosts interact; symbionts that are not drawn for interaction with a host are lost from the population. Interacting individuals of both species survive to be used as parents for the next generation if their fitness outcome from the interaction exceed a normally distributed random value; an additional 5\% of individuals are randomly drawn to survive in each population, preventing local extinctions.
+
+We ran 1,000 replicate individual-based simulations for each of the three genetic models of host-symbiont mutualism, as well as 1,000 replicate simulations of host and symbiont evolution with no coevolutionary selection, to provide a neutral expectation of results from drift and migration across the metapopulation. Simulation parameters were either held constant across all replicates or drawn at random from a uniform distribution of reasonable values (Table 4).
 
 
 Acknowledgements

@@ -44,5 +44,5 @@ Where
 - `par file` = path to file with parameters for the sims, such as `sim_par_example.R`
 - `output file` = path and (base) filename for files recording simulation results
 
-The script will read simulation parameters from teh parameter file and write results to the path and file specified as the output file. 
+The script will read simulation parameters from the parameter file and write results to the path and file specified as the output file. 
 
