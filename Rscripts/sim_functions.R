@@ -1,6 +1,8 @@
 # Functions for simulated host-symbiont coevolution, under different genetic models
-# jby 2015.08.11
-
+# jby 2017.02.16
+# 2015.08.11 --- version submitted to initial bioRxiv preprint
+# 2016.11.27 --- corrected typos in comments regarding value of selection tuning parameter
+# 2017.02.16 --- version submitted for updated preprint and manuscript resubmission
 
 #-------------------------------------------------------------------------
 # functions
@@ -51,7 +53,7 @@ selS <- function(ho, pa, om, Ch, Bh, Cs, Bs, tune=0.05){
 	
 	fits = mapply(function(x,y) c(Hmat[x,y], Pmat[y,x]), as.character(h), as.character(p[ps])) # interact pops
 	
-	# hard selection: is fit >= rnorm(mean=1,sd=0.1)
+	# hard selection: is fit >= rnorm(mean=1,sd=tune)
 	# (but keep at least 5% randomly drawn individuals)
 	sp1=ho[,c(which(fits[1,]>=rnorm(ncol(fits),1,tune)),sample(1:ncol(fits),0.05*ncol(fits)))]
 	sp2=pa[,c(which(fits[2,]>=rnorm(ncol(fits),1,tune)),sample(1:ncol(fits),0.05*ncol(fits)))]
@@ -71,7 +73,7 @@ selR <- function(ho, pa, Ch, Bh, Cs, Bs, tune=0.05){
 	
 	fits = mapply(function(x,y) c(Hmat[x,y], Pmat[x,y]), as.character(h), p[ps]) # interact pops
 	
-	# hard selection: is fit >= rnorm(mean=1,sd=0.1)
+	# hard selection: is fit >= rnorm(mean=1,sd=tune)
 	# (but keep at least 5% randomly drawn individuals)
 	sp1=ho[,c(which(fits[1,]>=rnorm(ncol(fits),1,tune)),sample(1:ncol(fits),0.05*ncol(fits)))]
 	sp2=pa[,c(which(fits[2,]>=rnorm(ncol(fits),1,tune)),sample(1:ncol(fits),0.05*ncol(fits)))]
@@ -90,7 +92,7 @@ selSR <- function(ho, pa, om, Ch, Bh, Cs, Bs, tune=0.05){
 	
 	fits = mapply(function(x,y) c(Hmat[x,y], Pmat[x,y]), h, p[ps]) # interact pops
 	
-	# hard selection: is fit >= rnorm(mean=1,sd=0.1)
+	# hard selection: is fit >= rnorm(mean=1,sd=tune)
 	# (but keep at least 5% randomly drawn individuals)
 	sp1=ho[,c(which(fits[1,]>=rnorm(ncol(fits),1,tune)),sample(1:ncol(fits),0.05*ncol(fits)))]
 	sp2=pa[,c(which(fits[2,]>=rnorm(ncol(fits),1,tune)),sample(1:ncol(fits),0.05*ncol(fits)))]

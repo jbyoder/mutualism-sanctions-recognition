@@ -1,5 +1,5 @@
-# parameter input for simulations_par.R
-# 2016.01.12
+# parameter input for simulations_par_soft2.R
+# 2016.12.27
 
 # NOTE: the following must be accounted for before source()ing this file
 # reps = vector of replicate ID numbers
@@ -22,9 +22,12 @@ rec2s = runif(length(reps), 0, 0.5)
 mu1s = mu2s = rep(1e-6, length(reps))  # mutation rate for sp 1, 2
 
 # interaction terms
-C1s = runif(length(reps), 0.01, 0.5) # cost to sp 1
-B1s = C1s * runif(length(reps), 1, 10) # create ratios from 1 to 10 for host
-C2s = runif(length(reps), 0.01, 0.5)
-B2s = C2s * runif(length(reps), 1, 100) # ratios from 1 to 100 for symbiote
-oms = runif(length(reps), 0.1, 0.9) # probability of repeat interaction (necessary for S, SR)
+# new this iteration: back to the original configuration, because that issue with cost/benefits was wrong (see project notes)
+oms = runif(length(reps), 0.01, 1) # sanctions effectiveness (necessary for S, SR)
+C1s = runif(length(reps), 0.01, 0.1) # cost to sp 1
+B1s = C1s + runif(length(reps), 0.01, 0.1) # create ratios from 2 to 10 for host
+C2s = runif(length(reps), 0.001, 0.1)
+B2s = C2s + runif(length(reps), 0.01, 1) # ratios from 11 to 1000 for symbiont
+
+
 
