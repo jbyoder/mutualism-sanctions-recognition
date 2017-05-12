@@ -5,6 +5,11 @@ Files in this repository support the manuscript
 
 > Yoder JB and P Tiffin. Sanctions, partner recognition, and variation in mutualism, the *American Naturalist*
 
+Mathematica notebooks, simulation scripts, and the data file have also been archived as 
+
+> Yoder JB and P Tiffin. Data from: Sanctions, partner recognition, and variation in mutualism, Dryad Digital Repository [http://dx.doi.org/10.5061/dryad.p2s02](http://dx.doi.org/10.5061/dryad.p2s02)
+
+
 Contents
 --------
 
@@ -12,7 +17,7 @@ The contents of the directories in this repository are as follows
 
 ### data
 
-Contains summarized output from the simulation scripts, which underlies all figures in the manuscript. Data files supporting the current revision have the date-tag `20170117` in their names.
+Contains summarized output from the simulation scripts, which underlies all figures in the manuscript. 
 
 ### figures
 
