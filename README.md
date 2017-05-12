@@ -3,9 +3,7 @@ Theory and individual-based simulations of mutualistic symbiosis mediated by san
 
 Files in this repository support the manuscript 
 
-> Yoder JB and P Tiffin. Sanctions, partner recognition, and variation in mutualistic symbiosis
-
-Contents now reflect revisions for resubmission to the *American Naturalist*, with extensive changes to the simulation scripts.
+> Yoder JB and P Tiffin. Sanctions, partner recognition, and variation in mutualism, the *American Naturalist*
 
 Contents
 --------
